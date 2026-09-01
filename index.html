@@ -1,22 +1,15 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Moonvale — Arquivos de Redlog Pines</title>
+<title>Moonvale — Investigation Archive</title>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -24,818 +17,872 @@ html {
 }
 
 body {
-    background: #080909;
-    color: #e8e6df;
-    font-family: Georgia, "Times New Roman", serif;
-    overflow-x: hidden;
+    font-family: Georgia, serif;
+    background: #080a09;
+    color: #e9e8e2;
+    min-height: 100vh;
 }
 
-:root {
-    --bg: #080909;
-    --bg2: #101211;
-    --card: #151816;
-    --card2: #1b1e1b;
-    --text: #e8e6df;
-    --muted: #969a94;
-    --green: #7d8d76;
-    --green2: #53604f;
-    --red: #8f4141;
-    --red2: #b35a5a;
-    --line: #292d29;
+button,
+input {
+    font: inherit;
 }
 
-/* textura */
+button {
+    cursor: pointer;
+}
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 100;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,.018) 0px,
-            rgba(255,255,255,.018) 1px,
-            transparent 1px,
-            transparent 4px
-        );
-
-    opacity: .35;
+.hidden {
+    display: none !important;
 }
 
 /* =========================
-   HERO
+   LOGIN
 ========================= */
 
-.hero {
+#loginScreen {
     min-height: 100vh;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    text-align: center;
-
-    position: relative;
+    padding: 30px;
 
     background:
         linear-gradient(
-            rgba(0,0,0,.35),
-            rgba(0,0,0,.88)
+            rgba(5,7,6,.72),
+            rgba(5,7,6,.94)
         ),
-        url("https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=2000&q=85");
-
-    background-size: cover;
-    background-position: center;
+        radial-gradient(
+            circle at 50% 20%,
+            #394236 0,
+            #111510 45%,
+            #070807 100%
+        );
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 35%;
+.login-box {
+    width: min(440px, 100%);
+    padding: 42px 36px;
 
-    background: linear-gradient(
-        transparent,
-        #080909
-    );
+    background: rgba(14,17,15,.94);
+    border: 1px solid #3c473a;
+
+    box-shadow: 0 25px 80px #000;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    width: min(850px, 90%);
-}
+.eyebrow {
+    text-align: center;
+    color: #819079;
 
-.location {
-    color: #a6b09e;
-    font-size: .7rem;
-    letter-spacing: 7px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
+    font: 11px Arial;
+    letter-spacing: 5px;
+
+    margin-bottom: 18px;
 }
 
 .logo {
-    font-size: clamp(4rem, 13vw, 9rem);
+    text-align: center;
+
+    font-size: 52px;
+    letter-spacing: 8px;
     font-weight: normal;
-    letter-spacing: 12px;
-    color: #f0eee8;
-
-    text-shadow:
-        0 5px 35px rgba(0,0,0,.9);
 }
 
-.divider {
-    width: 100px;
-    height: 1px;
-    background: var(--green);
-    margin: 25px auto;
-}
+.tag {
+    text-align: center;
+    color: #999d96;
 
-.subtitle {
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    color: #cccac3;
+    margin: 12px 0 35px;
+
+    font: 12px Arial;
     letter-spacing: 2px;
 }
 
-.hero-text {
-    max-width: 650px;
-    margin: 25px auto 35px;
+label {
+    display: block;
 
-    color: #a5a6a1;
-    line-height: 1.8;
-    font-size: .95rem;
-}
+    color: #858c82;
 
-.main-button {
-    display: inline-block;
-
-    padding: 15px 30px;
-
-    border: 1px solid #687362;
-    background: rgba(10,12,11,.75);
-
-    color: white;
-    text-decoration: none;
-
-    font-family: Arial, sans-serif;
-    font-size: .7rem;
-
-    letter-spacing: 2px;
+    font: 11px Arial;
     text-transform: uppercase;
+    letter-spacing: 1.5px;
 
-    transition: .3s;
+    margin: 18px 0 7px;
 }
 
-.main-button:hover {
-    background: var(--green);
-    color: #080909;
+input {
+    width: 100%;
+
+    padding: 14px;
+
+    background: #090b0a;
+    border: 1px solid #30372f;
+
+    color: #eee;
+    outline: none;
 }
+
+input:focus {
+    border-color: #73816d;
+}
+
+.btn {
+    width: 100%;
+
+    margin-top: 24px;
+    padding: 14px;
+
+    border: 1px solid #71806c;
+    background: #455341;
+
+    color: #fff;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    font: 11px Arial;
+}
+
+.btn:hover {
+    background: #5a6955;
+}
+
+.note {
+    text-align: center;
+
+    color: #686e67;
+
+    font: 10px Arial;
+    line-height: 1.6;
+
+    margin-top: 18px;
+}
+
 
 /* =========================
-   NAV
+   APP
 ========================= */
 
-nav {
+#app {
+    display: none;
+}
+
+.topbar {
     position: sticky;
     top: 0;
-    z-index: 50;
 
-    background: rgba(8,9,9,.95);
-    border-bottom: 1px solid var(--line);
+    z-index: 20;
 
-    backdrop-filter: blur(12px);
+    background: rgba(7,9,8,.96);
+
+    border-bottom: 1px solid #242a25;
+
+    backdrop-filter: blur(10px);
 }
 
-.nav-inner {
-    width: min(1150px, 92%);
-    min-height: 65px;
-
+.topbar-inner {
+    width: min(1200px,94%);
     margin: auto;
 
+    min-height: 66px;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
 }
 
-.nav-logo {
-    color: #d8d7d0;
-    text-decoration: none;
-
+.brand {
+    font-size: 17px;
     letter-spacing: 4px;
-    font-size: .8rem;
 }
 
-nav ul {
-    list-style: none;
-
+.nav {
     display: flex;
-    gap: 25px;
+    gap: 18px;
+    flex-wrap: wrap;
 }
 
-nav a {
-    color: #858983;
-    text-decoration: none;
+.nav button {
+    background: none;
+    border: 0;
 
-    font-family: Arial, sans-serif;
-    font-size: .65rem;
+    color: #7e857d;
 
-    letter-spacing: 1.5px;
+    font: 10px Arial;
+
     text-transform: uppercase;
-
-    transition: .2s;
+    letter-spacing: 1px;
 }
 
-nav a:hover {
-    color: #dfe4da;
+.nav button:hover {
+    color: #dfe4db;
 }
 
-/* =========================
-   GERAL
-========================= */
+.user {
+    font: 10px Arial;
+
+    color: #858b84;
+
+    border-left: 1px solid #303630;
+
+    padding-left: 16px;
+}
 
 main {
-    width: min(1100px, 92%);
+    width: min(1200px,94%);
     margin: auto;
 }
 
 section {
-    padding: 100px 0;
-    border-bottom: 1px solid #202320;
+    padding: 82px 0;
+
+    border-bottom: 1px solid #202520;
 }
 
-.section-number {
-    color: var(--green);
-    font-family: Arial, sans-serif;
-    font-size: .65rem;
-    letter-spacing: 4px;
+
+/* =========================
+   TEXTOS
+========================= */
+
+.eyebrow.left {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: clamp(34px,6vw,70px);
+    font-weight: normal;
 }
 
 h2 {
-    margin-top: 10px;
-
-    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-size: 34px;
     font-weight: normal;
 
-    color: var(--text);
+    margin: 8px 0 12px;
 }
 
-.section-description {
-    max-width: 680px;
-    margin-top: 15px;
+.lead {
+    max-width: 720px;
 
-    color: var(--muted);
+    color: #929890;
+
     line-height: 1.8;
+
+    font: 14px Arial;
 }
 
+
 /* =========================
-   HISTÓRIA
+   DASHBOARD
 ========================= */
 
-.story {
+.dashboard {
     display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    gap: 70px;
 
-    margin-top: 55px;
+    grid-template-columns: 1.5fr .5fr;
+
+    gap: 22px;
+
+    margin-top: 35px;
 }
 
-.story-text {
-    color: #c6c6bf;
-    font-size: 1.08rem;
-    line-height: 2;
+.panel {
+    background: #111411;
+
+    border: 1px solid #292f29;
+
+    padding: 28px;
 }
 
-.story-text::first-letter {
-    float: left;
-    font-size: 4.2rem;
-    line-height: .8;
-    margin-right: 10px;
-    color: var(--green);
-}
+.progress-title {
+    display: flex;
 
-.case-file {
-    padding: 30px;
+    justify-content: space-between;
 
-    background: #111311;
-    border: 1px solid #2d302d;
+    color: #bfc4bd;
 
-    box-shadow: 12px 12px 0 #050605;
+    font: 12px Arial;
 
-    transform: rotate(1deg);
-}
-
-.case-file h3 {
-    font-weight: normal;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
-}
-
-.case-row {
-    padding: 13px 0;
-    border-bottom: 1px solid #282b28;
-
-    font-family: Arial, sans-serif;
-    font-size: .72rem;
-}
-
-.case-row span {
-    display: block;
-    color: #697068;
-    margin-bottom: 4px;
-}
-
-.case-row strong {
-    color: #c9ccc5;
-    font-weight: normal;
-}
-
-.stamp {
-    display: inline-block;
-
-    margin-top: 25px;
-    padding: 7px 12px;
-
-    border: 1px solid var(--red);
-    color: var(--red2);
-
-    font-family: Arial, sans-serif;
-    font-size: .6rem;
-    letter-spacing: 2px;
-
-    transform: rotate(-4deg);
-}
-
-/* =========================
-   MAPA
-========================= */
-
-.map {
-    margin-top: 50px;
-
-    height: 420px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at 50% 50%,
-            #30392f,
-            #111511 65%
-        );
-
-    border: 1px solid #303630;
-}
-
-.map::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        repeating-linear-gradient(
-            35deg,
-            transparent 0px,
-            transparent 30px,
-            rgba(130,145,120,.04) 31px
-        );
-}
-
-.road {
-    position: absolute;
-
-    height: 3px;
-
-    background: #555e51;
-
-    transform-origin: left center;
-}
-
-.road.one {
-    width: 70%;
-    top: 48%;
-    left: 5%;
-    transform: rotate(-13deg);
-}
-
-.road.two {
-    width: 55%;
-    top: 35%;
-    left: 25%;
-    transform: rotate(45deg);
-}
-
-.road.three {
-    width: 50%;
-    top: 72%;
-    left: 20%;
-    transform: rotate(-35deg);
-}
-
-.map-point {
-    position: absolute;
-
-    padding: 8px 12px;
-
-    background: #0d100e;
-    border: 1px solid #687261;
-
-    color: #cbd0c7;
-
-    font-family: Arial, sans-serif;
-    font-size: .65rem;
-
-    cursor: pointer;
-
-    transition: .3s;
-}
-
-.map-point:hover {
-    background: var(--green2);
-    transform: scale(1.05);
-}
-
-.point-one {
-    top: 28%;
-    left: 25%;
-}
-
-.point-two {
-    top: 52%;
-    left: 60%;
-}
-
-.point-three {
-    top: 70%;
-    left: 30%;
-}
-
-.point-four {
-    top: 18%;
-    left: 70%;
-}
-
-/* =========================
-   INVESTIGAÇÃO
-========================= */
-
-.investigation {
-    margin-top: 50px;
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
-
-.invest-card {
-    background: var(--card);
-    border: 1px solid var(--line);
-
-    padding: 30px;
-    min-height: 220px;
-
-    transition: .3s;
-}
-
-.invest-card:hover {
-    transform: translateY(-5px);
-    border-color: #667160;
-}
-
-.icon {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
-}
-
-.invest-card h3 {
-    font-size: 1.1rem;
-    font-weight: normal;
     margin-bottom: 12px;
 }
 
-.invest-card p {
-    color: #898d87;
-    font-family: Arial, sans-serif;
-    font-size: .82rem;
-    line-height: 1.7;
+.bar {
+    height: 7px;
+
+    background: #252b25;
+
+    overflow: hidden;
 }
+
+.fill {
+    height: 100%;
+
+    width: 0;
+
+    background: #6f7e68;
+
+    transition: width .5s;
+}
+
+.stats {
+    display: grid;
+
+    grid-template-columns: repeat(4,1fr);
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.stat {
+    background: #0b0e0c;
+
+    border: 1px solid #252a25;
+
+    padding: 18px;
+}
+
+.stat b {
+    display: block;
+
+    font-size: 25px;
+    font-weight: normal;
+
+    color: #dfe2dc;
+}
+
+.stat span {
+    font: 9px Arial;
+
+    color: #747b73;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 15px;
+
+    margin-top: 28px;
+}
+
+.card {
+    background: #121512;
+
+    border: 1px solid #292f29;
+
+    padding: 25px;
+
+    min-height: 190px;
+
+    transition: .2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+
+    border-color: #65715f;
+}
+
+.card .icon {
+    font-size: 25px;
+
+    margin-bottom: 18px;
+}
+
+.card h3 {
+    font-weight: normal;
+
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #7f867e;
+
+    font: 12px Arial;
+
+    line-height: 1.65;
+}
+
+.lock {
+    opacity: .48;
+}
+
 
 /* =========================
    PERSONAGENS
 ========================= */
 
-.characters {
-    margin-top: 50px;
-
+.character-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+
+    grid-template-columns: repeat(4,1fr);
+
+    gap: 14px;
+
+    margin-top: 30px;
 }
 
 .character {
-    min-height: 340px;
-
-    padding: 25px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
     background:
         linear-gradient(
-            transparent 30%,
-            rgba(0,0,0,.95)
-        ),
-        linear-gradient(
-            135deg,
-            #303631,
-            #111311
+            150deg,
+            #2a3029,
+            #101310
         );
 
-    border: 1px solid #292d29;
+    min-height: 260px;
+
+    border: 1px solid #2c322c;
+
+    padding: 22px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: end;
 
     position: relative;
+
     overflow: hidden;
-
-    transition: .3s;
 }
 
-.character:hover {
-    transform: translateY(-6px);
-    border-color: #687463;
-}
-
-.character::before {
+.character:before {
     content: "?";
 
     position: absolute;
-    top: 15px;
-    right: 25px;
 
-    font-size: 5rem;
-    color: rgba(255,255,255,.035);
+    right: 20px;
+    top: 5px;
+
+    font-size: 100px;
+
+    color: #ffffff08;
+}
+
+.character.unlocked {
+    background:
+        linear-gradient(
+            150deg,
+            #354033,
+            #111511
+        );
 }
 
 .character small {
-    color: #84917d;
-    font-family: Arial, sans-serif;
-    text-transform: uppercase;
+    font: 9px Arial;
+
+    color: #82907b;
+
     letter-spacing: 2px;
-    font-size: .6rem;
+
+    text-transform: uppercase;
 }
 
 .character h3 {
-    font-size: 1.6rem;
+    font-size: 25px;
+
     font-weight: normal;
-    margin-top: 7px;
+
+    margin: 6px 0;
 }
 
 .character p {
-    margin-top: 8px;
+    font: 11px Arial;
 
-    color: #979b95;
+    color: #8f968e;
 
-    font-family: Arial, sans-serif;
-    font-size: .78rem;
-    line-height: 1.6;
+    line-height: 1.5;
 }
+
+.rel {
+    margin-top: 15px;
+}
+
+.rel-label {
+    display: flex;
+
+    justify-content: space-between;
+
+    font: 9px Arial;
+
+    color: #858d82;
+
+    margin-bottom: 6px;
+}
+
+.rel .bar {
+    height: 4px;
+}
+
 
 /* =========================
-   CELULAR
+   MENSAGENS
 ========================= */
 
-.phone-section {
-    margin-top: 55px;
-
+.messages {
     display: grid;
-    grid-template-columns: .8fr 1.2fr;
-    gap: 70px;
 
-    align-items: center;
+    grid-template-columns: 280px 1fr;
+
+    gap: 15px;
+
+    margin-top: 30px;
 }
 
-.phone {
-    width: 270px;
+.contact-list {
+    background: #101310;
 
-    margin: auto;
-
-    padding: 12px;
-
-    background: #020303;
-    border: 5px solid #2a2d2a;
-
-    border-radius: 30px;
-
-    box-shadow: 0 30px 60px rgba(0,0,0,.55);
+    border: 1px solid #292f29;
 }
 
-.screen {
-    min-height: 480px;
+.contact {
+    padding: 18px;
 
-    padding: 20px 13px;
+    border-bottom: 1px solid #242924;
 
-    border-radius: 20px;
+    color: #aeb4ac;
 
-    background: #101311;
+    font: 11px Arial;
+
+    cursor: pointer;
 }
 
-.chat-title {
-    text-align: center;
-
-    padding-bottom: 18px;
-
-    border-bottom: 1px solid #292d29;
-
-    color: #87937f;
-
-    font-family: Arial, sans-serif;
-    font-size: .6rem;
-    letter-spacing: 2px;
+.contact:hover,
+.contact.active {
+    background: #1b201b;
 }
 
-.message {
-    max-width: 85%;
+.chat {
+    background: #0d100e;
 
-    margin-top: 17px;
-    padding: 10px 12px;
+    border: 1px solid #292f29;
 
-    border-radius: 5px;
+    min-height: 430px;
 
-    font-family: Arial, sans-serif;
-    font-size: .72rem;
+    padding: 25px;
+}
+
+.chat-head {
+    border-bottom: 1px solid #282d28;
+
+    padding-bottom: 15px;
+
+    color: #aab1a7;
+
+    font: 11px Arial;
+
+    letter-spacing: 1px;
+}
+
+.bubble {
+    max-width: 70%;
+
+    padding: 11px 14px;
+
+    margin-top: 16px;
+
+    border-radius: 4px;
+
+    font: 12px Arial;
+
     line-height: 1.5;
 }
 
 .received {
-    background: #272b28;
-    color: #c4c7c1;
+    background: #252a25;
+
+    color: #c7ccc5;
 }
 
 .sent {
+    background: #45533f;
+
     margin-left: auto;
 
-    background: #43503e;
-    color: #e0e5dc;
+    color: #edf0ea;
 }
 
-.typing {
-    margin-top: 15px;
+.locked-chat {
+    color: #666d65;
 
-    color: #697069;
+    text-align: center;
 
-    font-family: Arial, sans-serif;
-    font-size: .6rem;
+    margin-top: 130px;
+
+    font: 11px Arial;
+
+    line-height: 1.8;
 }
+
 
 /* =========================
    PISTAS
 ========================= */
 
 .clues {
-    margin-top: 50px;
+    margin-top: 30px;
 
     display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
     gap: 12px;
 }
 
 .clue {
-    display: flex;
-    gap: 20px;
-
     padding: 20px;
 
-    background: #111311;
+    background: #111411;
 
-    border-left: 2px solid #596651;
+    border-left: 2px solid #64715e;
+
+    border-top: 1px solid #252a25;
+    border-right: 1px solid #252a25;
+    border-bottom: 1px solid #252a25;
 
     cursor: pointer;
-
-    transition: .25s;
 }
 
 .clue:hover {
-    background: #171a17;
+    background: #171b17;
 }
 
-.clue-number {
-    color: #778572;
+.clue small {
+    font: 9px Arial;
 
-    font-family: Arial, sans-serif;
-    font-size: .65rem;
+    color: #778174;
+
+    letter-spacing: 2px;
 }
 
 .clue h3 {
+    font-size: 16px;
+
     font-weight: normal;
-    font-size: 1rem;
+
+    margin: 6px 0;
 }
 
 .clue p {
-    margin-top: 5px;
+    font: 11px Arial;
 
-    color: #858982;
-
-    font-family: Arial, sans-serif;
-    font-size: .78rem;
+    color: #818880;
 }
+
+.clue.locked {
+    opacity: .45;
+
+    filter: grayscale(1);
+}
+
 
 /* =========================
-   RELACIONAMENTOS
+   VÍDEOS
 ========================= */
 
-.relationships {
-    margin-top: 50px;
-
+.video-grid {
     display: grid;
-    gap: 22px;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
 }
 
-.relationship {
-    padding: 25px;
+.video {
+    background: #111411;
 
-    background: #111311;
-    border: 1px solid #292d29;
+    border: 1px solid #292f29;
+
+    padding: 22px;
 }
 
-.relationship-top {
+.video-thumb {
+    height: 125px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #293228,
+            #090b09
+        );
+
     display: flex;
-    justify-content: space-between;
 
-    margin-bottom: 15px;
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 35px;
+
+    margin-bottom: 18px;
 }
 
-.relationship-name {
-    font-size: 1rem;
+.video h3 {
+    font-size: 15px;
+
+    font-weight: normal;
 }
 
-.relationship-value {
-    color: #87967f;
-    font-family: Arial, sans-serif;
-    font-size: .75rem;
+.video p {
+    font: 10px Arial;
+
+    color: #7f867e;
+
+    line-height: 1.5;
+
+    margin-top: 7px;
 }
 
-.bar {
-    width: 100%;
-    height: 5px;
-
-    background: #272b27;
-}
-
-.progress {
-    height: 100%;
-    background: #697961;
-}
-
-.progress.one {
-    width: 80%;
-}
-
-.progress.two {
-    width: 60%;
-}
-
-.progress.three {
-    width: 45%;
-}
 
 /* =========================
    ARQUIVOS
 ========================= */
 
 .files {
-    margin-top: 50px;
-
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
 }
 
 .file {
     padding: 25px;
 
-    background: #121412;
-    border: 1px solid #292d29;
+    background: #121512;
+
+    border: 1px solid #292f29;
 
     cursor: pointer;
-
-    transition: .25s;
 }
 
 .file:hover {
-    background: #191c19;
-    border-color: #687362;
+    border-color: #667260;
 }
 
 .file-top {
     display: flex;
+
     justify-content: space-between;
 
-    color: #70776d;
+    font: 9px Arial;
 
-    font-family: Arial, sans-serif;
-    font-size: .6rem;
+    color: #70786d;
 
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 .file h3 {
     font-weight: normal;
+
     margin-bottom: 8px;
 }
 
 .file p {
-    color: #858a83;
+    font: 11px Arial;
 
-    font-family: Arial, sans-serif;
-    font-size: .76rem;
-    line-height: 1.6;
+    color: #80877f;
 }
+
+
+/* =========================
+   ESCOLHAS
+========================= */
+
+.choice {
+    margin-top: 30px;
+
+    padding: 30px;
+
+    background: #111411;
+
+    border: 1px solid #292f29;
+}
+
+.choice p {
+    font: 12px Arial;
+
+    color: #888f87;
+
+    line-height: 1.7;
+
+    margin-top: 8px;
+}
+
+.choice-buttons {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+}
+
+.choice-buttons button {
+    padding: 11px 17px;
+
+    background: #151a16;
+
+    border: 1px solid #3b4539;
+
+    color: #aeb5aa;
+
+    font: 10px Arial;
+
+    letter-spacing: 1px;
+}
+
+.choice-buttons button:hover,
+.choice-buttons button.selected {
+    background: #46533f;
+
+    color: #fff;
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 70px 20px;
+
+    color: #5e655e;
+
+    font: 10px Arial;
+
+    line-height: 2;
+}
+
+footer strong {
+    color: #8b9785;
+
+    letter-spacing: 4px;
+
+    font-weight: normal;
+}
+
 
 /* =========================
    MODAL
@@ -846,605 +893,390 @@ h2 {
 
     inset: 0;
 
-    background: rgba(0,0,0,.85);
+    background: #000b;
+
+    z-index: 100;
 
     display: none;
 
     align-items: center;
-    justify-content: center;
 
-    z-index: 200;
+    justify-content: center;
 
     padding: 20px;
 }
 
-.modal.active {
+.modal.show {
     display: flex;
 }
 
 .modal-box {
-    width: min(600px, 100%);
-
-    padding: 35px;
+    width: min(560px,100%);
 
     background: #151815;
 
-    border: 1px solid #596551;
+    border: 1px solid #52604f;
 
-    box-shadow: 0 30px 80px rgba(0,0,0,.7);
+    padding: 32px;
 
     position: relative;
+
+    box-shadow: 0 30px 90px #000;
 }
 
 .close {
     position: absolute;
 
-    right: 20px;
-    top: 15px;
+    right: 18px;
+    top: 12px;
 
-    color: #888d85;
+    color: #8b9289;
+
+    font-size: 22px;
 
     cursor: pointer;
-
-    font-size: 1.3rem;
 }
 
 .modal-box h3 {
-    font-size: 1.6rem;
     font-weight: normal;
 
-    margin-bottom: 15px;
+    font-size: 24px;
+
+    margin-bottom: 12px;
 }
 
 .modal-box p {
-    color: #969b94;
+    font: 12px Arial;
+
+    color: #929990;
 
     line-height: 1.8;
-
-    font-family: Arial, sans-serif;
-    font-size: .85rem;
 }
 
-/* =========================
-   ESCOLHAS
-========================= */
-
-.choice-box {
-    margin-top: 50px;
-
-    padding: 45px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(75,89,69,.15),
-            transparent
-        );
-
-    border: 1px solid #2b302b;
-}
-
-.choice-box h3 {
-    font-size: 1.7rem;
-    font-weight: normal;
-}
-
-.choice-box p {
-    margin-top: 15px;
-
-    max-width: 750px;
-
-    color: #92978f;
-    line-height: 1.8;
-}
-
-.choices {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-
-    margin-top: 30px;
-}
-
-.choice {
-    padding: 12px 20px;
-
-    border: 1px solid #414940;
-
-    color: #a7aca4;
-
-    font-family: Arial, sans-serif;
-    font-size: .7rem;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.choice:hover,
-.choice.selected {
-    background: #43503e;
-    color: white;
-}
-
-/* =========================
-   RODAPÉ
-========================= */
-
-footer {
-    padding: 80px 20px;
-
-    text-align: center;
-
-    color: #666b65;
-
-    font-family: Arial, sans-serif;
-    font-size: .7rem;
-
-    line-height: 2;
-}
-
-footer strong {
-    color: #9ca695;
-
-    letter-spacing: 4px;
-
-    font-weight: normal;
-}
 
 /* =========================
    RESPONSIVO
 ========================= */
 
-@media (max-width: 850px) {
+@media(max-width:850px) {
 
-    nav ul {
+    .dashboard,
+    .messages {
+        grid-template-columns: 1fr;
+    }
+
+    .cards,
+    .character-grid,
+    .video-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .nav {
         display: none;
     }
 
-    .nav-inner {
-        justify-content: center;
+    .user {
+        margin-left: auto;
     }
+}
 
-    .story,
-    .phone-section {
-        grid-template-columns: 1fr;
-    }
+@media(max-width:520px) {
 
-    .investigation,
-    .characters {
-        grid-template-columns: 1fr;
-    }
-
+    .cards,
+    .character-grid,
+    .video-grid,
+    .clues,
     .files {
         grid-template-columns: 1fr;
     }
 
-    .phone {
-        width: 250px;
+    .logo {
+        font-size: 40px;
     }
 
     section {
-        padding: 70px 0;
-    }
-
-    .choice-box {
-        padding: 30px 20px;
+        padding: 60px 0;
     }
 }
-
-@media (max-width: 500px) {
-
-    .logo {
-        letter-spacing: 5px;
-    }
-
-    .map {
-        height: 330px;
-    }
-
-    .character {
-        min-height: 280px;
-    }
-}
-
 </style>
 </head>
 
-
 <body>
 
-
 <!-- =========================
-     CAPA
+     LOGIN
 ========================= -->
 
-<header class="hero" id="inicio">
+<div id="loginScreen">
 
-    <div class="hero-content">
+    <div class="login-box">
 
-        <div class="location">
-            REDLOG PINES
+        <div class="eyebrow">
+            REDLOG PINES // PRIVATE ARCHIVE
         </div>
 
         <div class="logo">
             MOONVALE
         </div>
 
-        <div class="divider"></div>
-
-        <div class="subtitle">
-            Love, Death & Other Secrets
+        <div class="tag">
+            YOUR INVESTIGATION. YOUR SECRETS.
         </div>
 
-        <p class="hero-text">
+        <form id="loginForm">
 
-            Uma pequena cidade.
-            Um desaparecimento.
-            Muitos segredos.
+            <label for="email">
+                E-mail
+            </label>
 
-            <br>
+            <input
+                id="email"
+                type="email"
+                placeholder="investigador@email.com"
+                required
+            >
 
-            Entre nas mensagens, siga as pistas
-            e descubra em quem você realmente pode confiar.
+            <label for="password">
+                Senha
+            </label>
 
-        </p>
+            <input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                required
+            >
 
-        <a href="#investigacao" class="main-button">
-            Abrir investigação
-        </a>
+            <button
+                class="btn"
+                type="submit"
+            >
+                Entrar no arquivo
+            </button>
+
+        </form>
+
+        <div class="note">
+            Protótipo acadêmico / fan-made.<br>
+            O progresso abaixo é uma simulação local para demonstração.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     APLICAÇÃO
+========================= -->
+
+<div id="app">
+
+<header class="topbar">
+
+    <div class="topbar-inner">
+
+        <div class="brand">
+            MOONVALE
+        </div>
+
+        <div class="nav">
+
+            <button onclick="go('inicio')">
+                Início
+            </button>
+
+            <button onclick="go('personagens')">
+                Personagens
+            </button>
+
+            <button onclick="go('mensagens')">
+                Mensagens
+            </button>
+
+            <button onclick="go('pistas')">
+                Pistas
+            </button>
+
+            <button onclick="go('ajuda')">
+                Ajuda
+            </button>
+
+        </div>
+
+        <div
+            class="user"
+            id="userName"
+        ></div>
 
     </div>
 
 </header>
 
 
-<!-- =========================
-     MENU
-========================= -->
-
-<nav>
-
-    <div class="nav-inner">
-
-        <a href="#inicio" class="nav-logo">
-            MOONVALE
-        </a>
-
-        <ul>
-
-            <li>
-                <a href="#historia">História</a>
-            </li>
-
-            <li>
-                <a href="#mapa">Redlog Pines</a>
-            </li>
-
-            <li>
-                <a href="#investigacao">Investigação</a>
-            </li>
-
-            <li>
-                <a href="#personagens">Personagens</a>
-            </li>
-
-            <li>
-                <a href="#pistas">Pistas</a>
-            </li>
-
-            <li>
-                <a href="#arquivos">Arquivos</a>
-            </li>
-
-        </ul>
-
-    </div>
-
-</nav>
-
-
 <main>
 
 
 <!-- =========================
-     HISTÓRIA
+     INÍCIO
 ========================= -->
 
-<section id="historia">
+<section id="inicio">
 
-    <div class="section-number">
-        ARQUIVO 01
+    <div class="eyebrow left">
+        ARQUIVO DO INVESTIGADOR
     </div>
 
-    <h2>
-        O caso começa aqui
-    </h2>
+    <h1 id="welcome">
+        Bem-vinda de volta.
+    </h1>
 
-    <p class="section-description">
-        Antes de procurar respostas, é preciso entender
-        onde tudo começou.
+    <p class="lead">
+        Seu arquivo pessoal acompanha o avanço da investigação.
+        Novas mensagens, personagens, pistas e vídeos aparecem
+        conforme o progresso é desbloqueado.
     </p>
 
 
-    <div class="story">
+    <div class="dashboard">
 
-        <div>
 
-            <p class="story-text">
+        <div class="panel">
 
-                É pouco depois da meia-noite quando Eric
-                chega à plataforma de observação em
-                Greenside Hill.
+            <div class="progress-title">
 
-                <br><br>
+                <span>
+                    PROGRESSO DA INVESTIGAÇÃO
+                </span>
 
-                Ele deveria encontrar seu melhor amigo,
-                Adam.
+                <strong id="progressText">
+                    0%
+                </strong>
 
-                Mas Adam não está lá.
+            </div>
 
-                <br><br>
 
-                Depois de uma ligação pouco antes do
-                desaparecimento, algo não parece certo.
+            <div class="bar">
 
-                <br><br>
+                <div
+                    class="fill"
+                    id="progressBar"
+                ></div>
 
-                Quando uma mensagem de vídeo de Adam
-                aparece, a investigação toma um rumo
-                completamente diferente.
+            </div>
 
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <b id="statChars">
+                        0
+                    </b>
+
+                    <span>
+                        Personagens
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <b id="statMsgs">
+                        0
+                    </b>
+
+                    <span>
+                        Mensagens
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <b id="statClues">
+                        0
+                    </b>
+
+                    <span>
+                        Pistas
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <b id="statVideos">
+                        0
+                    </b>
+
+                    <span>
+                        Vídeos
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="eyebrow left">
+                CAPÍTULO ATUAL
+            </div>
+
+            <h2 id="chapter">
+                01
+            </h2>
+
+            <p
+                class="lead"
+                id="chapterText"
+            >
+                O caso está apenas começando.
             </p>
-
-        </div>
-
-
-        <div class="case-file">
-
-            <h3>
-                CASO #001
-            </h3>
-
-            <div class="case-row">
-                <span>LOCAL</span>
-                <strong>Greenside Hill</strong>
-            </div>
-
-            <div class="case-row">
-                <span>ENVOLVIDO</span>
-                <strong>Adam</strong>
-            </div>
-
-            <div class="case-row">
-                <span>CONTATO</span>
-                <strong>Eric</strong>
-            </div>
-
-            <div class="case-row">
-                <span>STATUS</span>
-                <strong>Investigação em andamento</strong>
-            </div>
-
-            <div class="stamp">
-                CONFIDENCIAL
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     MAPA
-========================= -->
-
-<section id="mapa">
-
-    <div class="section-number">
-        ARQUIVO 02
-    </div>
-
-    <h2>
-        Redlog Pines
-    </h2>
-
-    <p class="section-description">
-        Uma pequena cidade cercada por uma história
-        que parece esconder muito mais do que deveria.
-    </p>
-
-
-    <div class="map">
-
-        <div class="road one"></div>
-        <div class="road two"></div>
-        <div class="road three"></div>
-
-
-        <div
-            class="map-point point-one"
-            onclick="openModal(
-                'GREENSIDE HILL',
-                'Um dos locais ligados ao início da investigação e ao desaparecimento de Adam.'
-            )">
-
-            📍 Greenside Hill
-
-        </div>
-
-
-        <div
-            class="map-point point-two"
-            onclick="openModal(
-                'A FLORESTA',
-                'As profundezas da floresta guardam segredos que parecem estar ligados ao caso.'
-            )">
-
-            🌲 Floresta
-
-        </div>
-
-
-        <div
-            class="map-point point-three"
-            onclick="openModal(
-                'REDLOG PINES',
-                'A pequena cidade onde acontecimentos estranhos parecem se repetir.'
-            )">
-
-            🏘️ Cidade
-
-        </div>
-
-
-        <div
-            class="map-point point-four"
-            onclick="openModal(
-                'LOCAL DESCONHECIDO',
-                'Arquivo bloqueado. Informações insuficientes.'
-            )">
-
-            ❓ Desconhecido
 
         </div>
 
     </div>
 
-</section>
 
+    <div class="choice">
 
-<!-- =========================
-     INVESTIGAÇÃO
-========================= -->
+        <div class="eyebrow left">
+            SIMULAÇÃO DE PROGRESSO
+        </div>
 
-<section id="investigacao">
+        <h2>
+            Continuar investigação
+        </h2>
 
-    <div class="section-number">
-        ARQUIVO 03
-    </div>
+        <p>
+            Use este botão durante sua apresentação para demonstrar
+            como novos conteúdos seriam desbloqueados pelo progresso
+            do jogador.
+        </p>
 
-    <h2>
-        Comece sua investigação
-    </h2>
+        <div class="choice-buttons">
 
-    <p class="section-description">
-        Cada detalhe pode esconder uma informação importante.
-    </p>
+            <button onclick="advance()">
+                DESBLOQUEAR PRÓXIMO CAPÍTULO
+            </button>
 
+            <button onclick="resetProgress()">
+                RESETAR DEMONSTRAÇÃO
+            </button>
 
-    <div class="investigation">
-
-
-        <article class="invest-card">
-
-            <div class="icon">
-                📱
-            </div>
-
-            <h3>
-                Mensagens
-            </h3>
-
-            <p>
-                Converse com os personagens, receba
-                informações e observe cuidadosamente
-                cada conversa.
-            </p>
-
-        </article>
-
-
-        <article class="invest-card">
-
-            <div class="icon">
-                📞
-            </div>
-
-            <h3>
-                Chamadas
-            </h3>
-
-            <p>
-                Algumas respostas podem aparecer
-                durante uma ligação inesperada.
-            </p>
-
-        </article>
-
-
-        <article class="invest-card">
-
-            <div class="icon">
-                🎥
-            </div>
-
-            <h3>
-                Arquivos
-            </h3>
-
-            <p>
-                Fotos, vídeos e mensagens de voz
-                podem revelar novas pistas.
-            </p>
-
-        </article>
-
-
-        <article class="invest-card">
-
-            <div class="icon">
-                🧩
-            </div>
-
-            <h3>
-                Minijogos
-            </h3>
-
-            <p>
-                Resolva desafios para continuar
-                avançando na investigação.
-            </p>
-
-        </article>
-
-
-        <article class="invest-card">
-
-            <div class="icon">
-                ❤️
-            </div>
-
-            <h3>
-                Relacionamentos
-            </h3>
-
-            <p>
-                Suas escolhas podem aproximar você
-                de seus novos amigos.
-            </p>
-
-        </article>
-
-
-        <article class="invest-card">
-
-            <div class="icon">
-                🏆
-            </div>
-
-            <h3>
-                Conquistas
-            </h3>
-
-            <p>
-                Complete investigações e acompanhe
-                suas conquistas.
-            </p>
-
-        </article>
+        </div>
 
     </div>
 
@@ -1457,79 +1289,23 @@ footer strong {
 
 <section id="personagens">
 
-    <div class="section-number">
-        ARQUIVO 04
+    <div class="eyebrow left">
+        ARQUIVO 01
     </div>
 
     <h2>
-        Em quem você confia?
+        Personagens
     </h2>
 
-    <p class="section-description">
-        Conhecer as pessoas envolvidas é tão importante
-        quanto encontrar as pistas.
+    <p class="lead">
+        Personagens descobertos durante a investigação ficam
+        registrados no seu arquivo.
     </p>
 
-
-    <div class="characters">
-
-
-        <article class="character">
-
-            <small>
-                Protagonista
-            </small>
-
-            <h3>
-                Você
-            </h3>
-
-            <p>
-                O investigador que entra no caso
-                e precisa tomar decisões ao longo
-                da história.
-            </p>
-
-        </article>
-
-
-        <article class="character">
-
-            <small>
-                Investigação
-            </small>
-
-            <h3>
-                Eric
-            </h3>
-
-            <p>
-                Amigo de Adam e uma das pessoas
-                envolvidas na busca por respostas.
-            </p>
-
-        </article>
-
-
-        <article class="character">
-
-            <small>
-                Desaparecido
-            </small>
-
-            <h3>
-                Adam
-            </h3>
-
-            <p>
-                Seu desaparecimento é o ponto
-                de partida para a investigação.
-            </p>
-
-        </article>
-
-
-    </div>
+    <div
+        class="character-grid"
+        id="characterGrid"
+    ></div>
 
 </section>
 
@@ -1540,88 +1316,40 @@ footer strong {
 
 <section id="mensagens">
 
-    <div class="section-number">
-        ARQUIVO 05
+    <div class="eyebrow left">
+        ARQUIVO 02
     </div>
 
     <h2>
-        Seu celular é parte da investigação
+        Mensagens
     </h2>
 
-    <p class="section-description">
-        Mensagens, chamadas, fotos, vídeos e mensagens
-        de voz ajudam a construir a história.
+    <p class="lead">
+        As conversas desbloqueadas permanecem disponíveis
+        no seu arquivo.
     </p>
 
 
-    <div class="phone-section">
+    <div class="messages">
 
+        <div
+            class="contact-list"
+            id="contactList"
+        ></div>
 
-        <div class="phone">
+        <div
+            class="chat"
+            id="chatBox"
+        >
 
-            <div class="screen">
-
-                <div class="chat-title">
-                    REDLOG PINES
-                </div>
-
-
-                <div class="message received">
-                    Você está aí?
-                </div>
-
-
-                <div class="message received">
-                    Precisamos conversar.
-                </div>
-
-
-                <div class="message received">
-                    Não confie em tudo que ouvir.
-                </div>
-
-
-                <div class="message sent">
-                    O que aconteceu?
-                </div>
-
-
-                <div class="message received">
-                    Eu não posso explicar por mensagem.
-                </div>
-
-
-                <div class="typing">
-                    digitando...
-                </div>
-
+            <div class="chat-head">
+                SELECIONE UM CONTATO
             </div>
 
-        </div>
-
-
-        <div>
-
-            <p class="story-text">
-
-                Em Moonvale, a investigação acontece
-                através do seu smartphone.
-
-                <br><br>
-
-                Você conversa com os personagens,
-                recebe chamadas, imagens, vídeos
-                e mensagens de voz.
-
-                <br><br>
-
-                Preste atenção.
-
-                Às vezes, uma informação aparentemente
-                pequena pode mudar a forma como você
-                enxerga todo o caso.
-
-            </p>
+            <div class="locked-chat">
+                Escolha um personagem para visualizar
+                as mensagens desbloqueadas.
+            </div>
 
         </div>
 
@@ -1636,373 +1364,96 @@ footer strong {
 
 <section id="pistas">
 
-    <div class="section-number">
-        ARQUIVO 06
+    <div class="eyebrow left">
+        ARQUIVO 03
     </div>
 
     <h2>
         Quadro de pistas
     </h2>
 
-    <p class="section-description">
-        Clique em uma pista para investigar.
+    <p class="lead">
+        Clique nas evidências já descobertas.
+        Conteúdos futuros permanecem bloqueados
+        para evitar spoilers.
     </p>
 
-
-    <div class="clues">
-
-
-        <div
-            class="clue"
-            onclick="openModal(
-                'A ÚLTIMA LIGAÇÃO',
-                'Adam entrou em contato pouco antes de desaparecer. A ligação pode ajudar a entender seus últimos momentos.'
-            )">
-
-            <div class="clue-number">
-                01
-            </div>
-
-            <div>
-                <h3>
-                    A última ligação
-                </h3>
-
-                <p>
-                    O último contato antes do desaparecimento.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div
-            class="clue"
-            onclick="openModal(
-                'A MENSAGEM DE VÍDEO',
-                'Uma mensagem de vídeo enviada por Adam parece ter sido gravada pouco antes de seu desaparecimento.'
-            )">
-
-            <div class="clue-number">
-                02
-            </div>
-
-            <div>
-                <h3>
-                    A mensagem de vídeo
-                </h3>
-
-                <p>
-                    Uma informação que muda a investigação.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div
-            class="clue"
-            onclick="openModal(
-                'OS ANTIGOS CRIMES',
-                'Redlog Pines possui uma história marcada por crimes que nunca foram totalmente esclarecidos.'
-            )">
-
-            <div class="clue-number">
-                03
-            </div>
-
-            <div>
-                <h3>
-                    Os antigos crimes
-                </h3>
-
-                <p>
-                    Um passado sombrio parece voltar à tona.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div
-            class="clue"
-            onclick="openModal(
-                'A FLORESTA',
-                'Quanto mais a investigação avança, mais a floresta parece esconder informações importantes.'
-            )">
-
-            <div class="clue-number">
-                04
-            </div>
-
-            <div>
-                <h3>
-                    A floresta
-                </h3>
-
-                <p>
-                    Há algo escondido além das árvores.
-                </p>
-            </div>
-
-        </div>
-
-
-    </div>
+    <div
+        class="clues"
+        id="clueGrid"
+    ></div>
 
 </section>
 
 
 <!-- =========================
-     RELACIONAMENTOS
+     AJUDA
 ========================= -->
 
-<section id="relacionamentos">
+<section id="ajuda">
 
-    <div class="section-number">
-        ARQUIVO 07
+    <div class="eyebrow left">
+        ARQUIVO 04
     </div>
 
     <h2>
-        Conexões
+        Central de ajuda
     </h2>
 
-    <p class="section-description">
-        Suas escolhas influenciam a maneira como você
-        se relaciona com as pessoas ao seu redor.
+    <p class="lead">
+        As dicas são liberadas de acordo com o ponto da
+        investigação. Primeiro uma dica leve, depois uma
+        explicação mais direta.
     </p>
 
 
-    <div class="relationships">
+    <div
+        class="video-grid"
+        id="videoGrid"
+    ></div>
 
 
-        <div class="relationship">
+    <div class="choice">
 
-            <div class="relationship-top">
-
-                <div class="relationship-name">
-                    Confiança
-                </div>
-
-                <div class="relationship-value">
-                    80%
-                </div>
-
-            </div>
-
-            <div class="bar">
-                <div class="progress one"></div>
-            </div>
-
+        <div class="eyebrow left">
+            ESCOLHAS
         </div>
 
-
-        <div class="relationship">
-
-            <div class="relationship-top">
-
-                <div class="relationship-name">
-                    Amizade
-                </div>
-
-                <div class="relationship-value">
-                    60%
-                </div>
-
-            </div>
-
-            <div class="bar">
-                <div class="progress two"></div>
-            </div>
-
-        </div>
-
-
-        <div class="relationship">
-
-            <div class="relationship-top">
-
-                <div class="relationship-name">
-                    Romance
-                </div>
-
-                <div class="relationship-value">
-                    45%
-                </div>
-
-            </div>
-
-            <div class="bar">
-                <div class="progress three"></div>
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     ARQUIVOS
-========================= -->
-
-<section id="arquivos">
-
-    <div class="section-number">
-        ARQUIVO 08
-    </div>
-
-    <h2>
-        Arquivos secretos
-    </h2>
-
-    <p class="section-description">
-        Alguns documentos permanecem bloqueados.
-        Talvez você consiga desbloqueá-los.
-    </p>
-
-
-    <div class="files">
-
-
-        <div
-            class="file"
-            onclick="openModal(
-                'CASO #001',
-                'Desaparecimento de Adam. Status: investigação em andamento.'
-            )">
-
-            <div class="file-top">
-                <span>CASE FILE</span>
-                <span>#001</span>
-            </div>
-
-            <h3>
-                Desaparecimento de Adam
-            </h3>
-
-            <p>
-                Documento principal da investigação.
-            </p>
-
-        </div>
-
-
-        <div
-            class="file"
-            onclick="openModal(
-                'REDLOG PINES',
-                'Arquivo sobre os acontecimentos estranhos registrados na pequena cidade.'
-            )">
-
-            <div class="file-top">
-                <span>LOCATION</span>
-                <span>#002</span>
-            </div>
-
-            <h3>
-                Redlog Pines
-            </h3>
-
-            <p>
-                Informações sobre a cidade e seu passado.
-            </p>
-
-        </div>
-
-
-        <div
-            class="file"
-            onclick="openModal(
-                'MENSAGENS',
-                'Registro de conversas importantes relacionadas ao caso.'
-            )">
-
-            <div class="file-top">
-                <span>MESSAGES</span>
-                <span>#003</span>
-            </div>
-
-            <h3>
-                Registro de mensagens
-            </h3>
-
-            <p>
-                Conversas que podem conter pistas.
-            </p>
-
-        </div>
-
-
-        <div
-            class="file"
-            onclick="openModal(
-                'ARQUIVO BLOQUEADO',
-                'Este documento ainda não pode ser acessado. Continue investigando.'
-            )">
-
-            <div class="file-top">
-                <span>CLASSIFIED</span>
-                <span>LOCKED</span>
-            </div>
-
-            <h3>
-                █████████
-            </h3>
-
-            <p>
-                Acesso restrito.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     ESCOLHAS
-========================= -->
-
-<section>
-
-    <div class="choice-box">
-
-        <div class="section-number">
-            DECISÃO
-        </div>
-
-        <h3>
-            Em quem você vai confiar?
-        </h3>
+        <h2>
+            Como você investiga?
+        </h2>
 
         <p>
-            Em Moonvale, suas decisões fazem parte da experiência.
-            Escolha como você pretende conduzir sua investigação.
+            Sua escolha fica salva no navegador e pode ser
+            alterada a qualquer momento.
         </p>
 
 
-        <div class="choices">
+        <div class="choice-buttons">
 
-            <div class="choice">
+            <button
+                onclick="choose(this,'CONFIAR')"
+            >
                 CONFIAR
-            </div>
+            </button>
 
-            <div class="choice">
+            <button
+                onclick="choose(this,'INVESTIGAR')"
+            >
                 INVESTIGAR
-            </div>
+            </button>
 
-            <div class="choice">
+            <button
+                onclick="choose(this,'DESCONFIAR')"
+            >
                 DESCONFIAR
-            </div>
+            </button>
 
-            <div class="choice">
+            <button
+                onclick="choose(this,'SEGUIR A INTUIÇÃO')"
+            >
                 SEGUIR A INTUIÇÃO
-            </div>
+            </button>
 
         </div>
 
@@ -2010,127 +1461,888 @@ footer strong {
 
 </section>
 
-
 </main>
+
+
+<!-- =========================
+     RODAPÉ
+========================= -->
+
+<footer>
+
+    <strong>
+        MOONVALE — INVESTIGATION ARCHIVE
+    </strong>
+
+    <br>
+
+    Projeto escolar / fan-made.
+    Não é um sistema oficial do jogo.
+
+</footer>
+
+</div>
 
 
 <!-- =========================
      MODAL
 ========================= -->
 
-<div class="modal" id="modal">
+<div
+    class="modal"
+    id="modal"
+>
 
     <div class="modal-box">
 
         <div
             class="close"
-            onclick="closeModal()">
+            onclick="closeModal()"
+        >
             ×
         </div>
 
-        <h3 id="modal-title">
-            Arquivo
-        </h3>
+        <h3 id="modalTitle"></h3>
 
-        <p id="modal-text">
-            Informação.
-        </p>
+        <p id="modalText"></p>
 
     </div>
 
 </div>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    <strong>MOONVALE</strong>
-
-    <br>
-
-    Arquivos de Redlog Pines
-
-    <br><br>
-
-    Projeto de fã inspirado em Moonvale.
-
-    <br>
-
-    Moonvale é desenvolvido pela Everbyte.
-
-</footer>
-
-
 <script>
 
 /* =========================
-   MODAL
+   DADOS
 ========================= */
 
-function openModal(title, text) {
+const DATA = {
 
-    document.getElementById("modal-title").innerText = title;
+    characters: [
 
-    document.getElementById("modal-text").innerText = text;
+        {
+            name: "Você",
+            role: "Investigadora",
+            desc: "A pessoa que conduz o caso.",
+            rel: 90,
+            unlock: 1
+        },
 
-    document.getElementById("modal").classList.add("active");
-}
+        {
+            name: "Eric",
+            role: "Investigação",
+            desc: "Um contato importante para o início do caso.",
+            rel: 60,
+            unlock: 1
+        },
+
+        {
+            name: "Adam",
+            role: "Desaparecido",
+            desc: "Seu desaparecimento dá início à investigação.",
+            rel: 35,
+            unlock: 2
+        },
+
+        {
+            name: "Novo contato",
+            role: "ARQUIVO BLOQUEADO",
+            desc: "Continue avançando para descobrir este personagem.",
+            rel: 0,
+            unlock: 4
+        }
+
+    ],
 
 
-function closeModal() {
+    clues: [
 
-    document.getElementById("modal").classList.remove("active");
-}
+        [
+            "01",
+            "A última ligação",
+            "Um contato importante antes do desaparecimento.",
+            1
+        ],
+
+        [
+            "02",
+            "Mensagem de vídeo",
+            "Uma mensagem que pode mudar a investigação.",
+            2
+        ],
+
+        [
+            "03",
+            "Fotografia",
+            "Uma imagem que merece ser analisada.",
+            3
+        ],
+
+        [
+            "04",
+            "Arquivo desconhecido",
+            "Informações ainda não disponíveis.",
+            4
+        ]
+
+    ],
 
 
-document.getElementById("modal").addEventListener("click", function(event) {
+    videos: [
 
-    if (event.target === this) {
-        closeModal();
+        [
+            "Dica #01",
+            "Onde começar a investigação",
+            "Uma orientação inicial para quem está perdido.",
+            1
+        ],
+
+        [
+            "Dica #02",
+            "Revisando mensagens",
+            "Confira as conversas anteriores antes de avançar.",
+            2
+        ],
+
+        [
+            "Dica #03",
+            "Conectando pistas",
+            "Compare as evidências já encontradas.",
+            3
+        ]
+
+    ],
+
+
+    chats: {
+
+        "Eric": [
+
+            [
+                "received",
+                "Você chegou a descobrir alguma coisa?"
+            ],
+
+            [
+                "sent",
+                "Ainda estou investigando."
+            ],
+
+            [
+                "received",
+                "Então preste atenção nas mensagens antigas."
+            ]
+
+        ],
+
+
+        "Adam": [
+
+            [
+                "received",
+                "Se você estiver vendo isso, precisa continuar procurando."
+            ],
+
+            [
+                "received",
+                "Nem tudo é o que parece."
+            ]
+
+        ]
+
     }
 
-});
+};
+
+
+/* =========================
+   ESTADO
+========================= */
+
+let state =
+    JSON.parse(
+        localStorage.getItem("moonvaleDemo")
+    ) || {
+
+        chapter: 1,
+
+        choice: "",
+
+        email: ""
+
+    };
+
+
+/* =========================
+   SALVAR
+========================= */
+
+function save() {
+
+    localStorage.setItem(
+        "moonvaleDemo",
+        JSON.stringify(state)
+    );
+
+}
+
+
+/* =========================
+   NAVEGAÇÃO
+========================= */
+
+function go(id) {
+
+    document
+        .getElementById(id)
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function login(event) {
+
+    event.preventDefault();
+
+    state.email =
+        document
+        .getElementById("email")
+        .value;
+
+    save();
+
+    document
+        .getElementById("loginScreen")
+        .style.display = "none";
+
+    document
+        .getElementById("app")
+        .style.display = "block";
+
+    document
+        .getElementById("userName")
+        .textContent =
+        state.email
+        .split("@")[0]
+        .toUpperCase();
+
+    render();
+
+}
+
+document
+    .getElementById("loginForm")
+    .addEventListener(
+        "submit",
+        login
+    );
+
+
+/* =========================
+   PROGRESSO
+========================= */
+
+function progress() {
+
+    return Math.min(
+        100,
+        Math.round(
+            ((state.chapter - 1) / 4) * 100
+        )
+    );
+
+}
+
+
+/* =========================
+   AVANÇAR
+========================= */
+
+function advance() {
+
+    if (state.chapter < 5) {
+
+        state.chapter++;
+
+    }
+
+    save();
+
+    render();
+
+    go("inicio");
+
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+function resetProgress() {
+
+    state.chapter = 1;
+
+    state.choice = "";
+
+    save();
+
+    render();
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render() {
+
+    const p = progress();
+
+    document
+        .getElementById("progressText")
+        .textContent =
+        p + "%";
+
+    document
+        .getElementById("progressBar")
+        .style.width =
+        p + "%";
+
+
+    document
+        .getElementById("chapter")
+        .textContent =
+        String(state.chapter)
+        .padStart(2, "0");
+
+
+    document
+        .getElementById("chapterText")
+        .textContent =
+
+        state.chapter === 1
+        ? "O caso está apenas começando."
+
+        : state.chapter === 2
+        ? "Uma nova informação foi adicionada ao arquivo."
+
+        : state.chapter === 3
+        ? "As pistas começam a se conectar."
+
+        : state.chapter === 4
+        ? "A investigação entrou em uma fase mais profunda."
+
+        : "Arquivo principal concluído. Continue revisando suas descobertas.";
+
+
+    renderCharacters();
+
+    renderContacts();
+
+    renderClues();
+
+    renderVideos();
+
+
+    if (state.choice) {
+
+        document
+            .querySelectorAll(
+                ".choice-buttons button"
+            )
+            .forEach(button => {
+
+                button.classList.toggle(
+                    "selected",
+                    button.textContent === state.choice
+                );
+
+            });
+
+    }
+
+}
+
+
+/* =========================
+   PERSONAGENS
+========================= */
+
+function renderCharacters() {
+
+    const unlocked =
+        DATA.characters.filter(
+            character =>
+            character.unlock <= state.chapter
+        ).length;
+
+
+    document
+        .getElementById("statChars")
+        .textContent =
+        unlocked + "/" + DATA.characters.length;
+
+
+    document
+        .getElementById("characterGrid")
+        .innerHTML =
+
+        DATA.characters
+        .map(character => {
+
+            const ok =
+                character.unlock <= state.chapter;
+
+
+            return `
+
+            <div
+                class="character ${ok ? "unlocked" : "lock"}"
+                onclick="${
+                    ok
+                    ? `openModal('${character.name}','${character.desc}')`
+                    : "lockedMessage()"
+                }"
+            >
+
+                <small>
+                    ${
+                        ok
+                        ? character.role
+                        : "ARQUIVO BLOQUEADO"
+                    }
+                </small>
+
+                <h3>
+                    ${
+                        ok
+                        ? character.name
+                        : "████████"
+                    }
+                </h3>
+
+                <p>
+                    ${
+                        ok
+                        ? character.desc
+                        : "Avance na investigação para desbloquear este personagem."
+                    }
+                </p>
+
+                ${
+                    ok
+                    ?
+
+                    `
+
+                    <div class="rel">
+
+                        <div class="rel-label">
+
+                            <span>
+                                RELACIONAMENTO
+                            </span>
+
+                            <span>
+                                ${character.rel}%
+                            </span>
+
+                        </div>
+
+                        <div class="bar">
+
+                            <div
+                                class="fill"
+                                style="width:${character.rel}%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                    `
+
+                    : ""
+
+                }
+
+            </div>
+
+            `;
+
+        })
+        .join("");
+
+}
+
+
+/* =========================
+   CONTATOS
+========================= */
+
+function renderContacts() {
+
+    const list =
+        document.getElementById(
+            "contactList"
+        );
+
+
+    const contacts =
+        Object.keys(DATA.chats)
+        .filter(name => {
+
+            const character =
+                DATA.characters.find(
+                    character =>
+                    character.name === name
+                );
+
+            return (
+                character &&
+                character.unlock <= state.chapter
+            );
+
+        });
+
+
+    list.innerHTML =
+        contacts
+        .map(
+            (name,index) => `
+
+            <div
+                class="contact ${index === 0 ? "active" : ""}"
+                onclick="showChat('${name}',this)"
+            >
+                💬 ${name}
+            </div>
+
+            `
+        )
+        .join("");
+
+
+    if (contacts.length) {
+
+        showChat(
+            contacts[0],
+            list.firstElementChild
+        );
+
+    }
+
+    else {
+
+        document
+            .getElementById("chatBox")
+            .innerHTML = `
+
+                <div class="chat-head">
+                    MENSAGENS
+                </div>
+
+                <div class="locked-chat">
+                    Nenhuma conversa desbloqueada ainda.
+                </div>
+
+            `;
+
+    }
+
+}
+
+
+/* =========================
+   CHAT
+========================= */
+
+function showChat(name,element) {
+
+    document
+        .querySelectorAll(".contact")
+        .forEach(item =>
+            item.classList.remove("active")
+        );
+
+
+    if (element) {
+
+        element.classList.add("active");
+
+    }
+
+
+    const chat =
+        DATA.chats[name] || [];
+
+
+    document
+        .getElementById("chatBox")
+        .innerHTML =
+
+        `
+
+        <div class="chat-head">
+            ${name.toUpperCase()}
+            // CONVERSA ARQUIVADA
+        </div>
+
+        `
+
+        +
+
+        chat
+        .map(
+            message =>
+            `
+
+            <div class="bubble ${message[0]}">
+                ${message[1]}
+            </div>
+
+            `
+        )
+        .join("");
+
+}
+
+
+/* =========================
+   PISTAS
+========================= */
+
+function renderClues() {
+
+    const unlocked =
+        DATA.clues.filter(
+            clue =>
+            clue[3] <= state.chapter
+        ).length;
+
+
+    document
+        .getElementById("statClues")
+        .textContent =
+        unlocked + "/" + DATA.clues.length;
+
+
+    document
+        .getElementById("clueGrid")
+        .innerHTML =
+
+        DATA.clues
+        .map(clue => {
+
+            const ok =
+                clue[3] <= state.chapter;
+
+
+            return `
+
+            <div
+                class="clue ${ok ? "" : "locked"}"
+                onclick="${
+                    ok
+                    ? `openModal('${clue[1]}','${clue[2]}')`
+                    : "lockedMessage()"
+                }"
+            >
+
+                <small>
+                    PISTA ${clue[0]}
+                </small>
+
+                <h3>
+                    ${
+                        ok
+                        ? clue[1]
+                        : "EVIDÊNCIA BLOQUEADA"
+                    }
+                </h3>
+
+                <p>
+                    ${
+                        ok
+                        ? clue[2]
+                        : "Continue a investigação para acessar esta evidência."
+                    }
+                </p>
+
+            </div>
+
+            `;
+
+        })
+        .join("");
+
+}
+
+
+/* =========================
+   VÍDEOS
+========================= */
+
+function renderVideos() {
+
+    const unlocked =
+        DATA.videos.filter(
+            video =>
+            video[3] <= state.chapter
+        ).length;
+
+
+    document
+        .getElementById("statVideos")
+        .textContent =
+        unlocked + "/" + DATA.videos.length;
+
+
+    document
+        .getElementById("videoGrid")
+        .innerHTML =
+
+        DATA.videos
+        .map(video => {
+
+            const ok =
+                video[3] <= state.chapter;
+
+
+            return `
+
+            <div
+                class="video ${ok ? "" : "lock"}"
+                onclick="${
+                    ok
+                    ? `openModal('${video[1]}','${video[2]}')`
+                    : "lockedMessage()"
+                }"
+            >
+
+                <div class="video-thumb">
+                    ${ok ? "▶" : "🔒"}
+                </div>
+
+                <h3>
+                    ${
+                        ok
+                        ? video[0]
+                        : "VÍDEO BLOQUEADO"
+                    }
+                </h3>
+
+                <p>
+                    ${
+                        ok
+                        ? video[2]
+                        : "Disponível após novos avanços na investigação."
+                    }
+                </p>
+
+            </div>
+
+            `;
+
+        })
+        .join("");
+
+}
 
 
 /* =========================
    ESCOLHAS
 ========================= */
 
-const choices = document.querySelectorAll(".choice");
+function choose(button,value) {
 
-choices.forEach(choice => {
+    state.choice = value;
 
-    choice.addEventListener("click", function() {
+    save();
 
-        choices.forEach(item => {
-            item.classList.remove("selected");
-        });
 
-        this.classList.add("selected");
+    document
+        .querySelectorAll(
+            ".choice-buttons button"
+        )
+        .forEach(
+            button =>
+            button.classList.remove("selected")
+        );
 
-    });
 
-});
+    button.classList.add("selected");
+
+}
 
 
 /* =========================
-   ESC ESCONDE MODAL
+   MODAL
 ========================= */
 
-document.addEventListener("keydown", function(event) {
+function openModal(title,text) {
 
-    if (event.key === "Escape") {
-        closeModal();
+    document
+        .getElementById("modalTitle")
+        .textContent =
+        title;
+
+
+    document
+        .getElementById("modalText")
+        .textContent =
+        text;
+
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+function closeModal() {
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+
+}
+
+
+function lockedMessage() {
+
+    openModal(
+        "ARQUIVO BLOQUEADO",
+        "Esta informação ainda não foi desbloqueada. Continue avançando na investigação."
+    );
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Escape") {
+
+            closeModal();
+
+        }
+
     }
-
-});
+);
 
 </script>
 
-
 </body>
 </html>
-```
