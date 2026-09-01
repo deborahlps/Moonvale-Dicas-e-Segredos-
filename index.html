@@ -5,82 +5,348 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moonvale — Dicas e Segredos 🌙</title>
     <style>
+        :root {
+            --bg-1: #0f1021;
+            --bg-2: #1b1d3a;
+            --panel: rgba(22, 24, 45, 0.9);
+            --panel-soft: rgba(255, 255, 255, 0.04);
+            --text: #f5f3ff;
+            --muted: #c7c3dd;
+            --purple: #b28cff;
+            --purple-strong: #8a5dff;
+            --pink: #ff7ae6;
+            --cyan: #79e6ff;
+            --green: #7ef5b7;
+            --gold: #ffd166;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #1a1a2e, #16213e);
-            color: #f0f0f0;
             margin: 0;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(178, 140, 255, 0.25), transparent 25%),
+                radial-gradient(circle at bottom right, rgba(121, 230, 255, 0.18), transparent 30%),
+                linear-gradient(135deg, var(--bg-1), var(--bg-2));
+            color: var(--text);
+            min-height: 100vh;
             padding: 40px 20px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
+
         .container {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            background: var(--panel);
+            border: 1px solid rgba(178, 140, 255, 0.55);
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.05),
+                0 0 25px rgba(178, 140, 255, 0.35),
+                0 0 60px rgba(121, 230, 255, 0.12),
+                0 18px 40px rgba(0,0,0,0.35);
+            overflow: hidden;
         }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(178,140,255,0.45), rgba(121,230,255,0.2), rgba(255,122,230,0.35));
+            filter: blur(12px);
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 16px 10px 12px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(178, 140, 255, 0.12);
+            border: 1px solid rgba(178, 140, 255, 0.5);
+            color: var(--cyan);
+            font-size: 0.82em;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            box-shadow: 0 0 18px rgba(121, 230, 255, 0.2);
+        }
+
         h1 {
-            text-align: center;
-            color: #e0c9ff;
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            margin: 0;
+            color: #f3e8ff;
+            font-size: clamp(2.2rem, 4vw, 4rem);
+            line-height: 1.1;
+            text-shadow: 0 0 18px rgba(178, 140, 255, 0.5);
         }
+
         .subtitulo {
-            text-align: center;
-            color: #b8a0e0;
-            font-size: 1.2em;
-            margin-bottom: 30px;
+            margin: 14px auto 0;
+            max-width: 700px;
+            color: var(--muted);
+            font-size: clamp(1rem, 2vw, 1.3rem);
         }
+
+        .hero-actions {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            padding: 16px 28px;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(178, 140, 255, 0.45);
+        }
+
+        .btn-secondary {
+            padding: 16px 28px;
+            background: rgba(255,255,255,0.04);
+            color: var(--text);
+            border-color: rgba(121, 230, 255, 0.5);
+            box-shadow: 0 0 15px rgba(121, 230, 255, 0.18);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 34px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 16px 12px;
+            box-shadow: inset 0 0 18px rgba(255,255,255,0.02);
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--gold);
+            font-size: 1.6em;
+            margin-bottom: 6px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.9em;
+        }
+
         .destaque {
-            background: rgba(224, 201, 255, 0.1);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #b8a0e0;
+            margin-top: 32px;
+            background: linear-gradient(135deg, rgba(178, 140, 255, 0.12), rgba(121, 230, 255, 0.05));
+            border: 1px solid rgba(178, 140, 255, 0.35);
+            border-left: 5px solid var(--purple);
+            border-radius: 18px;
+            padding: 22px 24px;
+            box-shadow: 0 0 22px rgba(178, 140, 255, 0.15);
         }
+
+        .destaque p {
+            margin: 0;
+            color: #efeaff;
+            font-size: 1.05em;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            margin-top: 36px;
+        }
+
+        .card {
+            background: var(--panel-soft);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: inset 0 0 12px rgba(255,255,255,0.02);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #f6ecff;
+            font-size: 1.8em;
+        }
+
         ul {
             list-style: none;
             padding: 0;
+            margin: 18px 0 0;
         }
+
         li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 0 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            color: var(--text);
+            position: relative;
+            padding-left: 30px;
         }
-        li:before {
-            content: "✅ ";
-            color: #90ee90;
+
+        li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-size: 1.1em;
         }
+
+        .mini-card {
+            background: linear-gradient(180deg, rgba(121,230,255,0.08), rgba(178,140,255,0.04));
+            border: 1px solid rgba(121,230,255,0.25);
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        .mini-card h3 {
+            margin: 0 0 10px;
+            color: var(--cyan);
+            font-size: 1.2em;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .tag {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(178, 140, 255, 0.12);
+            border: 1px solid rgba(178, 140, 255, 0.35);
+            color: #f5ecff;
+            font-size: 0.83em;
+        }
+
         .rodape {
             text-align: center;
-            margin-top: 40px;
-            color: #888;
-            font-size: 0.9em;
+            margin-top: 34px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #b9b3d9;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 14px;
+            }
+
+            .container {
+                padding: 22px 18px;
+            }
+
+            .stats,
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🌙 Moonvale</h1>
-        <p class="subtitulo">Dicas e Segredos — O Seu Guia de Aventura ✨</p>
+        <header class="hero">
+            <div class="eyebrow">Moonvale</div>
+            <h1>🌙 Dicas e Segredos</h1>
+            <p class="subtitulo">O guia essencial para explorar cada detalhe da sua aventura com mais leveza, estratégia e estilo.</p>
+
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#dicas">Entrar no site</a>
+                <a class="btn btn-secondary" href="#guia">Ver guia</a>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <strong>+30</strong>
+                    <span>dicas úteis</span>
+                </div>
+                <div class="stat">
+                    <strong>100%</strong>
+                    <span>foco em gameplay</span>
+                </div>
+                <div class="stat">
+                    <strong>24/7</strong>
+                    <span>para te ajudar</span>
+                </div>
+            </div>
+        </header>
 
         <div class="destaque">
-            <p><strong>Bem-vindo(a) ao seu guia completo de Moonvale!</strong></p>
-            <p>Aqui você encontra dicas práticas, truques, segredos, passo a passo de missões, localização de itens e tudo o que precisa para aproveitar ao máximo sua aventura. Sem enrolação, direto ao ponto e sempre atualizado! 🗺️💫</p>
+            <p><strong>Bem-vindo(a) ao seu guia completo de Moonvale!</strong> Aqui você encontra truques, segredos, rotas, builds, missões e tudo o que precisa para evoluir com mais facilidade e conquistar cada conquista da aventura.</p>
         </div>
 
-        <h2>📌 O que você encontra aqui:</h2>
-        <ul>
-            <li>Dicas e truques para iniciantes e avançados</li>
-            <li>Passo a passo de missões e eventos</li>
-            <li>Localização de itens, recursos e segredos escondidos</li>
-            <li>Estratégias, builds e combinações</li>
-            <li>Atualizações e novidades do jogo</li>
-        </ul>
+        <main class="content-grid" id="dicas">
+            <section class="card" id="guia">
+                <h2>📌 O que você encontra aqui:</h2>
+                <ul>
+                    <li>Dicas e truques para iniciantes e jogadores mais avançados</li>
+                    <li>Passo a passo de missões e eventos especiais</li>
+                    <li>Localização de itens, recursos e segredos escondidos</li>
+                    <li>Estratégias, combinações e builds poderosas</li>
+                    <li>Atualizações, novidades e conteúdos de valor</li>
+                </ul>
+            </section>
 
-        <p style="text-align: center; margin-top: 30px; font-size: 1.1em;">
-            💛 Salve e acompanhe sempre! Sua aventura fica muito mais fácil com a gente.
+            <aside class="mini-card">
+                <h3>✨ Destaque da semana</h3>
+                <p>Descubra os melhores caminhos, os atalhos mais inteligentes e as melhores escolhas para aproveitar ao máximo cada jornada.</p>
+
+                <div class="tag-list">
+                    <span class="tag">Missões</span>
+                    <span class="tag">Segredos</span>
+                    <span class="tag">Builds</span>
+                    <span class="tag">Itens</span>
+                </div>
+            </aside>
+        </main>
+
+        <p style="text-align: center; margin-top: 32px; font-size: 1.1em; color: #f8ebff;">
+            💛 Salve este guia e acompanhe sempre. Sua aventura fica muito mais forte com a gente.
         </p>
 
         <div class="rodape">
