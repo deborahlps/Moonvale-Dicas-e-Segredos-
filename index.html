@@ -264,6 +264,91 @@
             font-size: 0.95em;
         }
 
+        .site-preview {
+            margin-top: 36px;
+            padding-top: 10px;
+        }
+
+        .site-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 22px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(178,140,255,0.4);
+            border-radius: 18px 18px 0 0;
+            margin-bottom: 0;
+        }
+
+        .brand {
+            font-weight: bold;
+            color: var(--cyan);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .site-body {
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr;
+            gap: 22px;
+            padding: 22px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(178,140,255,0.2);
+            border-top: none;
+            border-radius: 0 0 18px 18px;
+        }
+
+        .post-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .post-card {
+            background: linear-gradient(135deg, rgba(178,140,255,0.08), rgba(121,230,255,0.04));
+            border: 1px solid rgba(121,230,255,0.2);
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+        .post-card h3 {
+            margin: 0 0 10px;
+            color: #f6ecff;
+        }
+
+        .post-card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .sidebar-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+        .sidebar-card h3 {
+            margin-top: 0;
+            color: var(--gold);
+        }
+
+        .sidebar-card ul {
+            margin: 10px 0 0;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 20px 14px;
@@ -274,11 +359,13 @@
             }
 
             .stats,
-            .content-grid {
+            .content-grid,
+            .site-body {
                 grid-template-columns: 1fr;
             }
 
-            .hero-actions {
+            .hero-actions,
+            .site-topbar {
                 flex-direction: column;
             }
 
@@ -296,7 +383,7 @@
             <p class="subtitulo">O guia essencial para explorar cada detalhe da sua aventura com mais leveza, estratégia e estilo.</p>
 
             <div class="hero-actions">
-                <a class="btn btn-primary" href="#dicas">Entrar no site</a>
+                <a class="btn btn-primary" href="#site">Entrar no site</a>
                 <a class="btn btn-secondary" href="#guia">Ver guia</a>
             </div>
 
@@ -344,6 +431,47 @@
                 </div>
             </aside>
         </main>
+
+        <section class="site-preview" id="site">
+            <div class="site-topbar">
+                <div class="brand">Moonvale</div>
+                <nav class="nav">
+                    <a href="#">Início</a>
+                    <a href="#">Dicas</a>
+                    <a href="#">Segredos</a>
+                    <a href="#">Missões</a>
+                </nav>
+            </div>
+
+            <div class="site-body">
+                <div class="post-list">
+                    <article class="post-card">
+                        <h3>🔹 Dica rápida: organize sua rota</h3>
+                        <p>Antes de seguir para uma missão difícil, vale sempre checar itens, recursos e abrigo mais próximo para não perder tempo.</p>
+                    </article>
+
+                    <article class="post-card">
+                        <h3>🔹 Segredo de itens raros</h3>
+                        <p>Alguns materiais aparecem em locais menos visíveis. Explore cantos, pontes e ruínas secundárias para encontrar melhor recompensas.</p>
+                    </article>
+
+                    <article class="post-card">
+                        <h3>🔹 Build recomendada</h3>
+                        <p>Uma combinação equilibrada entre dano, defesa e mobilidade ajuda muito em missões de alto nível e eventos especiais.</p>
+                    </article>
+                </div>
+
+                <aside class="sidebar-card">
+                    <h3>📌 Em destaque</h3>
+                    <ul>
+                        <li>Guia de iniciante</li>
+                        <li>Missões diárias</li>
+                        <li>Itens raros</li>
+                        <li>Segredos escondidos</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
 
         <p style="text-align: center; margin-top: 32px; font-size: 1.1em; color: #f8ebff;">
             💛 Salve este guia e acompanhe sempre. Sua aventura fica muito mais forte com a gente.
