@@ -1,635 +1,1316 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Moonvale — Dicas e Segredos 🌙</title>
+    <title>MOONVALE — Arquivos de Redlog Pines</title>
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <style>
 
-    :root {
-        --roxo: #a855f7;
-        --roxo-claro: #d8b4fe;
-        --azul: #38bdf8;
-        --rosa: #f472b6;
-        --fundo: #050816;
-        --card: rgba(15, 23, 42, 0.75);
-        --texto: #f8fafc;
-        --cinza: #94a3b8;
-    }
+        /* ================================
+           RESET
+        ================================= */
 
-    body {
-        min-height: 100vh;
-        font-family: Arial, Helvetica, sans-serif;
-        color: var(--texto);
-        background:
-            radial-gradient(circle at 20% 20%, rgba(168, 85, 247, .20), transparent 25%),
-            radial-gradient(circle at 80% 10%, rgba(56, 189, 248, .15), transparent 25%),
-            radial-gradient(circle at 50% 90%, rgba(244, 114, 182, .10), transparent 30%),
-            var(--fundo);
-        overflow-x: hidden;
-    }
-
-    /* ESTRELAS */
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        opacity: .5;
-        background-image:
-            radial-gradient(#fff 1px, transparent 1px),
-            radial-gradient(#c084fc 1px, transparent 1px);
-        background-size: 90px 90px, 140px 140px;
-        background-position: 10px 20px, 50px 80px;
-    }
-
-    .container {
-        width: min(100% - 40px, 950px);
-        margin: 60px auto;
-        padding: 45px;
-        position: relative;
-
-        background: var(--card);
-        backdrop-filter: blur(15px);
-
-        border: 1px solid rgba(168, 85, 247, .7);
-        border-radius: 25px;
-
-        box-shadow:
-            0 0 15px rgba(168, 85, 247, .35),
-            0 0 50px rgba(56, 189, 248, .12),
-            inset 0 0 30px rgba(168, 85, 247, .05);
-    }
-
-    /* BRILHO NA BORDA */
-    .container::before {
-        content: "";
-        position: absolute;
-        inset: -2px;
-        border-radius: 27px;
-        padding: 2px;
-
-        background: linear-gradient(
-            90deg,
-            #a855f7,
-            #38bdf8,
-            #f472b6,
-            #a855f7
-        );
-
-        background-size: 300% 300%;
-
-        -webkit-mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-
-        animation: neonBorder 6s linear infinite;
-        pointer-events: none;
-    }
-
-    @keyframes neonBorder {
-        0% {
-            background-position: 0% 50%;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        50% {
-            background-position: 100% 50%;
+        html {
+            scroll-behavior: smooth;
         }
 
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-
-    /* CABEÇALHO */
-    .logo {
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
-    .lua {
-        font-size: 65px;
-        display: inline-block;
-
-        filter:
-            drop-shadow(0 0 8px #fff)
-            drop-shadow(0 0 20px #a855f7)
-            drop-shadow(0 0 40px #38bdf8);
-
-        animation: flutuar 3s ease-in-out infinite;
-    }
-
-    @keyframes flutuar {
-        0%, 100% {
-            transform: translateY(0);
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background: #08090b;
+            color: #e8e6df;
+            overflow-x: hidden;
         }
 
-        50% {
-            transform: translateY(-10px);
-        }
-    }
+        /* ================================
+           CORES
+        ================================= */
 
-    h1 {
-        font-size: clamp(2.5rem, 7vw, 4.5rem);
-        text-align: center;
-        letter-spacing: 4px;
-
-        background: linear-gradient(
-            90deg,
-            #fff,
-            #d8b4fe,
-            #38bdf8,
-            #fff
-        );
-
-        background-size: 300%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-
-        animation: textoNeon 5s linear infinite;
-
-        text-shadow:
-            0 0 20px rgba(168, 85, 247, .4);
-    }
-
-    @keyframes textoNeon {
-        0% {
-            background-position: 0%;
+        :root {
+            --preto: #08090b;
+            --preto2: #101216;
+            --cinza: #17191d;
+            --cinza2: #24272d;
+            --texto: #e8e6df;
+            --texto2: #a9aaa6;
+            --verde: #879b78;
+            --verde-escuro: #465441;
+            --vermelho: #8e3d3d;
+            --vermelho-claro: #b85b5b;
+            --branco: #f5f3ed;
         }
 
-        100% {
-            background-position: 300%;
-        }
-    }
+        /* ================================
+           FUNDO
+        ================================= */
 
-    .subtitulo {
-        text-align: center;
-        color: var(--cinza);
-        font-size: 1.15rem;
-        margin: 10px auto 35px;
-        max-width: 650px;
-    }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
 
-    /* BOTÃO */
-    .botao-area {
-        text-align: center;
-        margin: 30px 0 45px;
-    }
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.15),
+                    rgba(0,0,0,.15)
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255,255,255,.015) 0px,
+                    rgba(255,255,255,.015) 1px,
+                    transparent 1px,
+                    transparent 4px
+                );
 
-    .botao {
-        display: inline-block;
-        padding: 16px 38px;
-
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 1.05rem;
-
-        border-radius: 50px;
-
-        background: linear-gradient(
-            135deg,
-            #9333ea,
-            #2563eb
-        );
-
-        border: 1px solid #d8b4fe;
-
-        box-shadow:
-            0 0 10px #a855f7,
-            0 0 30px rgba(168, 85, 247, .6),
-            inset 0 0 10px rgba(255,255,255,.15);
-
-        transition: .3s ease;
-    }
-
-    .botao:hover {
-        transform: translateY(-4px) scale(1.04);
-
-        box-shadow:
-            0 0 15px #a855f7,
-            0 0 40px #38bdf8,
-            0 0 70px rgba(168, 85, 247, .7);
-    }
-
-    /* DESTAQUE */
-    .destaque {
-        position: relative;
-        padding: 25px;
-        margin-bottom: 40px;
-
-        border-radius: 18px;
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(168, 85, 247, .12),
-                rgba(56, 189, 248, .06)
-            );
-
-        border: 1px solid rgba(168, 85, 247, .5);
-
-        box-shadow:
-            0 0 20px rgba(168, 85, 247, .12),
-            inset 0 0 20px rgba(56, 189, 248, .04);
-    }
-
-    .destaque strong {
-        color: #d8b4fe;
-        font-size: 1.25rem;
-    }
-
-    .destaque p:last-child {
-        color: #cbd5e1;
-        margin-top: 10px;
-    }
-
-    /* TÍTULOS */
-    h2 {
-        margin-bottom: 20px;
-        color: #e9d5ff;
-
-        text-shadow:
-            0 0 10px rgba(168, 85, 247, .5);
-    }
-
-    /* CARDS */
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
-
-    .card {
-        padding: 22px;
-
-        background: rgba(15, 23, 42, .75);
-
-        border: 1px solid rgba(148, 163, 184, .18);
-        border-radius: 16px;
-
-        transition: .3s ease;
-
-        position: relative;
-        overflow: hidden;
-    }
-
-    .card::before {
-        content: "";
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        top: -50px;
-        right: -50px;
-
-        background: #a855f7;
-        filter: blur(45px);
-        opacity: .25;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-
-        border-color: #a855f7;
-
-        box-shadow:
-            0 0 15px rgba(168, 85, 247, .25),
-            0 0 35px rgba(56, 189, 248, .08);
-    }
-
-    .icone {
-        font-size: 30px;
-        margin-bottom: 10px;
-    }
-
-    .card h3 {
-        color: #f1f5f9;
-        margin-bottom: 7px;
-    }
-
-    .card p {
-        color: var(--cinza);
-        font-size: .95rem;
-    }
-
-    /* DICAS */
-    .dicas {
-        margin-top: 45px;
-    }
-
-    .dica {
-        display: flex;
-        align-items: flex-start;
-        gap: 15px;
-
-        padding: 17px 0;
-
-        border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .check {
-        min-width: 32px;
-        height: 32px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        border-radius: 50%;
-
-        background: rgba(34,197,94,.12);
-        border: 1px solid rgba(74,222,128,.5);
-
-        box-shadow:
-            0 0 12px rgba(34,197,94,.25);
-
-        color: #86efac;
-    }
-
-    .dica strong {
-        color: #f8fafc;
-    }
-
-    .dica p {
-        color: var(--cinza);
-        margin-top: 3px;
-    }
-
-    /* RODAPÉ */
-    .rodape {
-        text-align: center;
-        margin-top: 50px;
-        padding-top: 25px;
-
-        border-top: 1px solid rgba(255,255,255,.08);
-
-        color: #64748b;
-        font-size: .9rem;
-    }
-
-    .rodape span {
-        color: #c084fc;
-    }
-
-    /* CELULAR */
-    @media (max-width: 700px) {
-        .container {
-            width: calc(100% - 24px);
-            margin: 20px auto;
-            padding: 28px 20px;
-            border-radius: 20px;
+            opacity: .35;
         }
 
-        .grid {
-            grid-template-columns: 1fr;
+        /* ================================
+           CABEÇALHO
+        ================================= */
+
+        header {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 30%,
+                    rgba(84,100,76,.18),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    rgba(5,6,7,.58),
+                    rgba(5,6,7,.92)
+                ),
+                url("https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+            background-position: center;
         }
 
-        .lua {
-            font-size: 50px;
+        header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent 50%,
+                    #08090b 100%
+                );
         }
 
-        .subtitulo {
+        .hero {
+            position: relative;
+            z-index: 2;
+            width: min(900px, 90%);
+            text-align: center;
+        }
+
+        .mini-title {
+            color: #b9c4b0;
+            letter-spacing: 7px;
+            font-size: .75rem;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: clamp(4rem, 12vw, 8.5rem);
+            letter-spacing: 12px;
+            font-weight: normal;
+
+            color: var(--branco);
+
+            text-shadow:
+                0 4px 25px rgba(0,0,0,.8),
+                0 0 40px rgba(135,155,120,.15);
+        }
+
+        .linha {
+            width: 110px;
+            height: 1px;
+            background: #899581;
+            margin: 25px auto;
+            opacity: .7;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.1rem, 3vw, 1.7rem);
+            font-weight: normal;
+            color: #d2d1ca;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 25px auto 35px;
+            color: #aaa9a3;
+            line-height: 1.8;
             font-size: 1rem;
         }
 
         .botao {
-            width: 100%;
-        }
-    }
-</style>
-```
+            display: inline-block;
 
+            padding: 14px 28px;
+
+            color: #eae9e2;
+            text-decoration: none;
+
+            border: 1px solid #687363;
+            background: rgba(15,17,18,.7);
+
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: .75rem;
+
+            transition: .3s;
+        }
+
+        .botao:hover {
+            background: #687363;
+            color: #090a0b;
+        }
+
+        /* ================================
+           NAVEGAÇÃO
+        ================================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+
+            background: rgba(8,9,11,.94);
+            border-bottom: 1px solid #24272b;
+
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-container {
+            width: min(1100px, 92%);
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            min-height: 65px;
+        }
+
+        .nav-logo {
+            color: #d9d8d1;
+            text-decoration: none;
+            letter-spacing: 4px;
+            font-size: .9rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: #9d9e99;
+            text-decoration: none;
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: .25s;
+        }
+
+        nav a:hover {
+            color: #d9ddd2;
+        }
+
+        /* ================================
+           CONTEÚDO
+        ================================= */
+
+        main {
+            width: min(1100px, 92%);
+            margin: auto;
+        }
+
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid #1d2024;
+        }
+
+        .titulo-secao {
+            margin-bottom: 50px;
+        }
+
+        .numero {
+            color: #71806a;
+            font-size: .7rem;
+            letter-spacing: 4px;
+        }
+
+        h2 {
+            margin-top: 10px;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: normal;
+            color: #e5e3dc;
+        }
+
+        .descricao {
+            max-width: 650px;
+            color: #989994;
+            line-height: 1.8;
+            margin-top: 15px;
+        }
+
+        /* ================================
+           HISTÓRIA
+        ================================= */
+
+        .historia {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .texto-grande {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #c6c5bf;
+        }
+
+        .texto-grande::first-letter {
+            font-size: 4rem;
+            float: left;
+            line-height: .8;
+            margin-right: 10px;
+            color: #8b997f;
+        }
+
+        .arquivo {
+            background: #111317;
+            border: 1px solid #2b2e32;
+            padding: 30px;
+            transform: rotate(1deg);
+            box-shadow: 15px 15px 0 #0c0d0f;
+        }
+
+        .arquivo h3 {
+            color: #cfcfc8;
+            font-weight: normal;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .arquivo p {
+            color: #898b87;
+            line-height: 1.7;
+            font-family: Arial, sans-serif;
+            font-size: .85rem;
+        }
+
+        .carimbo {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 7px 12px;
+            border: 1px solid #814848;
+            color: #a95252;
+            font-family: Arial, sans-serif;
+            font-size: .65rem;
+            letter-spacing: 2px;
+            transform: rotate(-3deg);
+        }
+
+        /* ================================
+           MISTÉRIO
+        ================================= */
+
+        .misterio {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: #111317;
+            border: 1px solid #292c30;
+            padding: 28px;
+            min-height: 210px;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #64705e;
+            background: #15181b;
+        }
+
+        .card-icon {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            opacity: .75;
+        }
+
+        .card h3 {
+            color: #deddd6;
+            font-size: 1.15rem;
+            font-weight: normal;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #8f918c;
+            font-family: Arial, sans-serif;
+            font-size: .86rem;
+            line-height: 1.7;
+        }
+
+        /* ================================
+           PERSONAGENS
+        ================================= */
+
+        .personagens {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .personagem {
+            min-height: 280px;
+            padding: 25px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            background:
+                linear-gradient(
+                    transparent 30%,
+                    rgba(0,0,0,.9)
+                ),
+                linear-gradient(
+                    135deg,
+                    #292d30,
+                    #111315
+                );
+
+            border: 1px solid #2a2d31;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .personagem::before {
+            content: "?";
+
+            position: absolute;
+            top: 20px;
+            right: 25px;
+
+            font-size: 4rem;
+            color: rgba(255,255,255,.04);
+        }
+
+        .personagem span {
+            color: #7f8d78;
+            font-family: Arial, sans-serif;
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 7px;
+        }
+
+        .personagem h3 {
+            font-size: 1.5rem;
+            font-weight: normal;
+        }
+
+        .personagem p {
+            color: #979994;
+            font-family: Arial, sans-serif;
+            font-size: .8rem;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        /* ================================
+           CELULAR / MENSAGENS
+        ================================= */
+
+        .mensagens {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .celular {
+            width: 270px;
+            margin: auto;
+            padding: 14px;
+
+            border-radius: 32px;
+            background: #030405;
+            border: 5px solid #272a2e;
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,.5);
+        }
+
+        .tela {
+            background: #101215;
+            border-radius: 21px;
+            padding: 20px 14px;
+            min-height: 470px;
+        }
+
+        .topo-chat {
+            text-align: center;
+            color: #8f9a87;
+            font-family: Arial, sans-serif;
+            font-size: .65rem;
+            letter-spacing: 2px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #272a2e;
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 10px 12px;
+            margin-top: 18px;
+
+            border-radius: 5px;
+
+            font-family: Arial, sans-serif;
+            font-size: .75rem;
+            line-height: 1.5;
+        }
+
+        .msg.recebida {
+            background: #24282b;
+            color: #c4c5c1;
+        }
+
+        .msg.enviada {
+            margin-left: auto;
+            background: #3e4b3a;
+            color: #dce2d8;
+        }
+
+        .digitando {
+            color: #6f756e;
+            font-family: Arial, sans-serif;
+            font-size: .65rem;
+            margin-top: 15px;
+        }
+
+        /* ================================
+           PISTAS
+        ================================= */
+
+        .pistas {
+            display: grid;
+            gap: 12px;
+        }
+
+        .pista {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            padding: 20px;
+
+            background: #111317;
+            border-left: 2px solid #596650;
+        }
+
+        .pista-numero {
+            color: #6e7c68;
+            font-family: Arial, sans-serif;
+            font-size: .7rem;
+        }
+
+        .pista h3 {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+
+        .pista p {
+            margin-top: 5px;
+            color: #858783;
+            font-family: Arial, sans-serif;
+            font-size: .8rem;
+        }
+
+        /* ================================
+           ESCOLHAS
+        ================================= */
+
+        .escolhas {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(73,82,67,.12),
+                    transparent
+                );
+            padding: 50px;
+            border: 1px solid #252a26;
+        }
+
+        .escolhas h3 {
+            font-size: 1.7rem;
+            font-weight: normal;
+            margin-bottom: 15px;
+        }
+
+        .escolhas p {
+            color: #969892;
+            line-height: 1.8;
+            max-width: 750px;
+        }
+
+        .opcoes {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .opcao {
+            padding: 12px 20px;
+            border: 1px solid #414840;
+            color: #aaaFA7;
+            font-family: Arial, sans-serif;
+            font-size: .75rem;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .opcao:hover {
+            background: #3e493b;
+            color: white;
+        }
+
+        /* ================================
+           RODAPÉ
+        ================================= */
+
+        footer {
+            padding: 70px 20px;
+            text-align: center;
+            color: #656863;
+            font-family: Arial, sans-serif;
+            font-size: .75rem;
+            line-height: 2;
+        }
+
+        footer strong {
+            color: #9aa592;
+            letter-spacing: 3px;
+            font-weight: normal;
+        }
+
+        /* ================================
+           ANIMAÇÃO
+        ================================= */
+
+        .aparecer {
+            animation: aparecer 1.2s ease forwards;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================================
+           RESPONSIVO
+        ================================= */
+
+        @media (max-width: 800px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .nav-container {
+                justify-content: center;
+            }
+
+            .historia,
+            .mensagens {
+                grid-template-columns: 1fr;
+            }
+
+            .misterio,
+            .personagens {
+                grid-template-columns: 1fr;
+            }
+
+            .celular {
+                width: 250px;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .escolhas {
+                padding: 30px 20px;
+            }
+
+            .logo {
+                letter-spacing: 6px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
 
-```
-<main class="container">
+    <!-- ================================
+         CAPA
+    ================================= -->
 
-    <header class="logo">
+    <header id="inicio">
 
-        <div class="lua">🌙</div>
+        <div class="hero aparecer">
 
-        <h1>MOONVALE</h1>
+            <div class="mini-title">
+                REDLOG PINES
+            </div>
 
-        <p class="subtitulo">
-            Dicas, segredos e guias para dominar sua aventura ✨
-        </p>
+            <div class="logo">
+                MOONVALE
+            </div>
+
+            <div class="linha"></div>
+
+            <h2>
+                Love, Death & Other Secrets
+            </h2>
+
+            <p>
+                Uma cidade pequena. Um desaparecimento.
+                Segredos que deveriam permanecer escondidos.
+                E agora, você está no centro da investigação.
+            </p>
+
+            <a href="#historia" class="botao">
+                Abrir os arquivos
+            </a>
+
+        </div>
 
     </header>
 
 
-    <div class="botao-area">
+    <!-- ================================
+         MENU
+    ================================= -->
 
-        <a href="#guias" class="botao">
-            ✨ ENTRAR NO GUIA
-        </a>
+    <nav>
 
-    </div>
+        <div class="nav-container">
 
+            <a href="#inicio" class="nav-logo">
+                MOONVALE
+            </a>
 
-    <section class="destaque">
-
-        <p>
-            <strong>🌌 Bem-vindo(a) a Moonvale!</strong>
-        </p>
-
-        <p>
-            Prepare-se para descobrir segredos, completar missões,
-            encontrar itens escondidos e aprender os melhores truques
-            para aproveitar sua aventura ao máximo.
-        </p>
-
-    </section>
-
-
-    <section id="guias">
-
-        <h2>🗺️ O que você encontra aqui</h2>
-
-        <div class="grid">
-
-            <article class="card">
-
-                <div class="icone">🎯</div>
-
-                <h3>Dicas para Iniciantes</h3>
-
-                <p>
-                    Aprenda o básico e evite erros que podem atrapalhar
-                    seu progresso no começo da aventura.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">⚔️</div>
-
-                <h3>Estratégias</h3>
-
-                <p>
-                    Descubra combinações, builds e estratégias para
-                    enfrentar os desafios mais difíceis.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">🗝️</div>
-
-                <h3>Segredos</h3>
-
-                <p>
-                    Localizações especiais, itens escondidos e
-                    descobertas que podem passar despercebidas.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">📜</div>
-
-                <h3>Missões</h3>
-
-                <p>
-                    Guias passo a passo para completar missões,
-                    eventos e objetivos complicados.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">💎</div>
-
-                <h3>Itens e Recursos</h3>
-
-                <p>
-                    Saiba onde encontrar recursos importantes e como
-                    aproveitar melhor seus itens.
-                </p>
-
-            </article>
-
-
-            <article class="card">
-
-                <div class="icone">🌟</div>
-
-                <h3>Novidades</h3>
-
-                <p>
-                    Acompanhe novidades, atualizações e conteúdos
-                    adicionados ao jogo.
-                </p>
-
-            </article>
+            <ul>
+                <li><a href="#historia">História</a></li>
+                <li><a href="#misterios">Mistérios</a></li>
+                <li><a href="#personagens">Personagens</a></li>
+                <li><a href="#mensagens">Mensagens</a></li>
+                <li><a href="#pistas">Pistas</a></li>
+            </ul>
 
         </div>
 
-    </section>
+    </nav>
 
 
-    <section class="dicas">
-
-        <h2>💡 Dicas rápidas</h2>
+    <main>
 
 
-        <div class="dica">
+        <!-- ================================
+             HISTÓRIA
+        ================================= -->
 
-            <div class="check">✓</div>
+        <section id="historia">
 
-            <div>
-                <strong>Explore todos os cantos</strong>
+            <div class="titulo-secao">
 
-                <p>
-                    Nem sempre os melhores itens estão no caminho principal.
+                <div class="numero">
+                    ARQUIVO 01
+                </div>
+
+                <h2>O caso começa aqui</h2>
+
+                <p class="descricao">
+                    Antes de procurar respostas, é preciso entender
+                    como tudo começou.
                 </p>
+
             </div>
 
-        </div>
+
+            <div class="historia">
+
+                <div>
+
+                    <p class="texto-grande">
+
+                        É pouco depois da meia-noite quando Eric chega
+                        à plataforma de observação em Greenside Hill.
+                        Ele deveria encontrar seu melhor amigo, Adam.
+                        Mas Adam não está lá.
+
+                        <br><br>
+
+                        Minutos antes, ele havia ligado.
+
+                        Agora, desapareceu.
+
+                        <br><br>
+
+                        Enquanto Eric e seus amigos tentam descobrir
+                        o que aconteceu, uma mensagem de vídeo de Adam
+                        muda completamente o caso.
+
+                    </p>
+
+                </div>
 
 
-        <div class="dica">
+                <div class="arquivo">
 
-            <div class="check">✓</div>
+                    <h3>
+                        CASO: ADAM
+                    </h3>
 
-            <div>
-                <strong>Não ignore missões secundárias</strong>
+                    <p>
+                        LOCALIZAÇÃO
+                        <br>
+                        Greenside Hill
+                    </p>
 
-                <p>
-                    Elas podem liberar recompensas e conteúdos especiais.
-                </p>
+                    <br>
+
+                    <p>
+                        STATUS
+                        <br>
+                        DESAPARECIDO
+                    </p>
+
+                    <br>
+
+                    <p>
+                        CLASSIFICAÇÃO
+                        <br>
+                        INVESTIGAÇÃO EM ANDAMENTO
+                    </p>
+
+                    <div class="carimbo">
+                        CONFIDENCIAL
+                    </div>
+
+                </div>
+
             </div>
 
-        </div>
+        </section>
 
 
-        <div class="dica">
+        <!-- ================================
+             MISTÉRIOS
+        ================================= -->
 
-            <div class="check">✓</div>
+        <section id="misterios">
 
-            <div>
-                <strong>Guarde recursos importantes</strong>
+            <div class="titulo-secao">
 
-                <p>
-                    Alguns recursos podem ser necessários mais tarde.
+                <div class="numero">
+                    ARQUIVO 02
+                </div>
+
+                <h2>Os mistérios de Redlog Pines</h2>
+
+                <p class="descricao">
+                    Quanto mais você investiga, mais percebe que o
+                    desaparecimento de Adam pode ser apenas uma parte
+                    de algo muito maior.
                 </p>
+
             </div>
 
-        </div>
+
+            <div class="misterio">
+
+                <article class="card">
+
+                    <div class="card-icon">◉</div>
+
+                    <h3>
+                        O desaparecimento
+                    </h3>
+
+                    <p>
+                        Adam desapareceu depois de entrar em contato
+                        com Eric. O que ele descobriu antes de sumir?
+                    </p>
+
+                </article>
 
 
-        <div class="dica">
+                <article class="card">
 
-            <div class="check">✓</div>
+                    <div class="card-icon">⌁</div>
 
-            <div>
-                <strong>Confira os segredos</strong>
+                    <h3>
+                        Os antigos crimes
+                    </h3>
 
-                <p>
-                    Existem descobertas que só aparecem para quem explora.
-                </p>
+                    <p>
+                        Redlog Pines carrega acontecimentos sombrios
+                        que continuam cercados de perguntas.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-icon">?</div>
+
+                    <h3>
+                        O segredo
+                    </h3>
+
+                    <p>
+                        Existe algo escondido na floresta.
+                        E talvez alguém esteja tentando impedir
+                        que você descubra.
+                    </p>
+
+                </article>
+
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
-    <footer class="rodape">
+        <!-- ================================
+             PERSONAGENS
+        ================================= -->
 
-        🌙 Feito com carinho para a comunidade de
-        <span>Moonvale</span>.
+        <section id="personagens">
+
+            <div class="titulo-secao">
+
+                <div class="numero">
+                    ARQUIVO 03
+                </div>
+
+                <h2>Em quem você confia?</h2>
+
+                <p class="descricao">
+                    Em Moonvale, conhecer as pessoas é parte da investigação.
+                    Mas nem todo mundo conta toda a verdade.
+                </p>
+
+            </div>
+
+
+            <div class="personagens">
+
+                <article class="personagem">
+
+                    <span>
+                        Investigação
+                    </span>
+
+                    <h3>
+                        Você
+                    </h3>
+
+                    <p>
+                        O personagem principal. Suas escolhas
+                        influenciam a investigação e seus relacionamentos.
+                    </p>
+
+                </article>
+
+
+                <article class="personagem">
+
+                    <span>
+                        Caso Adam
+                    </span>
+
+                    <h3>
+                        Eric
+                    </h3>
+
+                    <p>
+                        Amigo de Adam. É ele quem percebe que
+                        alguma coisa está muito errada.
+                    </p>
+
+                </article>
+
+
+                <article class="personagem">
+
+                    <span>
+                        Desaparecido
+                    </span>
+
+                    <h3>
+                        Adam
+                    </h3>
+
+                    <p>
+                        Seu desaparecimento é o ponto de partida
+                        para uma investigação cheia de perguntas.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             MENSAGENS
+        ================================= -->
+
+        <section id="mensagens">
+
+            <div class="titulo-secao">
+
+                <div class="numero">
+                    ARQUIVO 04
+                </div>
+
+                <h2>As respostas estão nas mensagens</h2>
+
+                <p class="descricao">
+                    Conversas, chamadas, fotos, vídeos e mensagens de voz
+                    fazem parte da investigação.
+                </p>
+
+            </div>
+
+
+            <div class="mensagens">
+
+                <div class="celular">
+
+                    <div class="tela">
+
+                        <div class="topo-chat">
+                            CHAT — REDLOG PINES
+                        </div>
+
+
+                        <div class="msg recebida">
+                            Você está aí?
+                        </div>
+
+
+                        <div class="msg recebida">
+                            Precisamos conversar.
+                        </div>
+
+
+                        <div class="msg recebida">
+                            Não confie em tudo que ouvir.
+                        </div>
+
+
+                        <div class="msg enviada">
+                            O que aconteceu?
+                        </div>
+
+
+                        <div class="msg recebida">
+                            Eu não posso explicar por mensagem.
+                        </div>
+
+
+                        <div class="digitando">
+                            alguém está digitando...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <p class="texto-grande">
+
+                        Uma das características mais importantes de
+                        Moonvale é a forma como a história acontece
+                        através do seu celular.
+
+                        <br><br>
+
+                        Você conversa com os personagens, recebe arquivos,
+                        participa de chamadas e precisa prestar atenção
+                        aos detalhes.
+
+                        <br><br>
+
+                        Uma mensagem pode parecer simples no começo.
+                        Mais tarde, ela pode se transformar em uma pista.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             PISTAS
+        ================================= -->
+
+        <section id="pistas">
+
+            <div class="titulo-secao">
+
+                <div class="numero">
+                    ARQUIVO 05
+                </div>
+
+                <h2>Quadro de investigação</h2>
+
+                <p class="descricao">
+                    Toda investigação começa juntando pequenas peças.
+                </p>
+
+            </div>
+
+
+            <div class="pistas">
+
+                <div class="pista">
+
+                    <div class="pista-numero">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            A última ligação
+                        </h3>
+
+                        <p>
+                            Adam entrou em contato pouco antes de desaparecer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pista">
+
+                    <div class="pista-numero">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            A mensagem de vídeo
+                        </h3>
+
+                        <p>
+                            Uma mensagem recebida depois do desaparecimento
+                            levanta novas perguntas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pista">
+
+                    <div class="pista-numero">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Redlog Pines
+                        </h3>
+
+                        <p>
+                            O desaparecimento parece estar conectado
+                            aos segredos da pequena cidade.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pista">
+
+                    <div class="pista-numero">
+                        04
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            A floresta
+                        </h3>
+
+                        <p>
+                            Existe algo escondido além do que
+                            os moradores querem revelar.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================
+             ESCOLHAS
+        ================================= -->
+
+        <section>
+
+            <div class="escolhas">
+
+                <div class="numero">
+                    ARQUIVO 06
+                </div>
+
+                <h3>
+                    Em quem você vai confiar?
+                </h3>
+
+                <p>
+                    Em Moonvale, suas decisões fazem parte da história.
+                    Você pode se aproximar dos personagens, criar vínculos,
+                    questionar suas intenções e escolher em quem confiar.
+                </p>
+
+
+                <div class="opcoes">
+
+                    <div class="opcao">
+                        CONFIAR
+                    </div>
+
+                    <div class="opcao">
+                        INVESTIGAR
+                    </div>
+
+                    <div class="opcao">
+                        DESCONFIAR
+                    </div>
+
+                    <div class="opcao">
+                        SEGUIR A INTUIÇÃO
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================================
+         RODAPÉ
+    ================================= -->
+
+    <footer>
+
+        <strong>MOONVALE</strong>
 
         <br>
 
-        Boa aventura, viajante! ⚔️✨
+        Arquivos de Redlog Pines
+
+        <br><br>
+
+        Este é um projeto de fã inspirado no universo de Moonvale.
+        Moonvale é desenvolvido pela Everbyte.
 
     </footer>
 
-</main>
-```
+
+    <script>
+
+        /* Pequeno efeito ao passar pelas opções */
+
+        const opcoes = document.querySelectorAll(".opcao");
+
+        opcoes.forEach(opcao => {
+
+            opcao.addEventListener("click", () => {
+
+                opcoes.forEach(item => {
+                    item.style.background = "";
+                    item.style.color = "";
+                });
+
+                opcao.style.background = "#3e493b";
+                opcao.style.color = "#ffffff";
+
+            });
+
+        });
+
+    </script>
 
 </body>
 </html>
